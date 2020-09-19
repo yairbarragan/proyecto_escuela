@@ -1,0 +1,22 @@
+.top-bar {
+  background: #007BFF;
+}
+.top-bar span {
+  color: white;
+}
+.top-bar .tipo-usuario {
+  color: white;
+}
+.top-bar .tipo-usuario:hover {
+  color: gray;
+  text-decoration: none;
+}
+.top-bar .nav-link {
+  color: white;
+}
+.top-bar .nav-link:hover {
+  color: gray;
+}
+.top-bar .dropdown-item span {
+  color: red;
+}

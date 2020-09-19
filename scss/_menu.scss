@@ -1,0 +1,35 @@
+.menu-wrap {
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 100vh;
+  margin-left: -200px;
+  transition: all .5s;
+  border-right: solid rgba(0,0,0,0.2);
+  background: #f6f6f6
+}
+.btn-menu {
+  cursor: pointer;
+}
+.btn-menu:hover {
+  color: gray;
+}
+.menu-wrap-js {
+  margin-left: 0;
+}
+.icon-wrap {
+  max-width: 30px;
+}
+.menu-wrap .nav-link {
+  color: #2e2e2e;
+}
+.menu-wrap .nav-link:hover {
+  color: gray;
+}
+@media (min-width: 768px) {
+  .menu-wrap {
+    margin-left: 0;
+  }
+  .menu-wrap-js {
+    margin-left: -200px;
+  }
+} 
