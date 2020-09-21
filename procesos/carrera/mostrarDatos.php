@@ -13,14 +13,6 @@ $tabla = '<table id="iddatatable" class="table-striped table-bordered
 				<td style="max-width: 64px;">Opciones</td>
 			</tr>
 		</thead>
-		<tfoot style="background-color:#ccc;color:white;font-weight:bold;height:40px;">
-			<tr>
-			    <td>No.</td>
-			    <td>Nombre</td>
-                <td>Clave</td>
-                <td>Opciones</td>
-			</tr>
-		</tfoot>
 		<tbody class="body-tabla">';
 
 $datosTabla = "";

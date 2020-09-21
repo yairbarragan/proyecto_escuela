@@ -17,6 +17,7 @@
                 
                 <div class="row">
                     <!-- USUARIOS -->
+                    <input type="text" id="id_usuario" name="id_usuario" hidden="">  
                     <div class="col-md-6">
                         <label class="mt-2">Nombre</label>
                         <input type="text" class="form-control" id="nombreU" name="nombreU" required="">
@@ -29,10 +30,10 @@
                         <label class="mt-2">Usuario</label>
                         <input type="text" class="form-control" id="usuarioU" name="usuarioU"required="">
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <label class="mt-2">Password</label>
                         <input type="password" class="form-control" id="passwordU" name="passwordU" required="">
-                    </div>
+                    </div> -->
                     <div class="col-md-12">
                         <?php 
                             require_once "../clases/Conexion.php"; 
@@ -55,17 +56,18 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div id="asesor" class="col-md-12 mt-2">
+
+                    <div id="asesorU" class="col-md-12 mt-2">
                         <div class="frmAsesor" id="frmAsesorU">
                             <div class="container asesor-wrap">
                                 <div class="row">
                                      <div class="col-md-6">
                                         <label class="mt-2">No. Empleado</label>
-                                        <input type="text" class="form-control" id="no_empleadoU" name="no_empleadoU" required="">
+                                        <input type="text" class="form-control asesor-input" id="no_empleadoU" name="no_empleadoU" required="">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Grado Estudios</label>
-                                        <input type="text" class="form-control" id="grado_estudiosU" name="grado_estudiosU" required="">
+                                        <input type="text" class="form-control asesor-input" id="grado_estudiosU" name="grado_estudiosU" required="">
                                     </div>
                                     <?php 
                                     $sql = "SELECT id_carrera, nombre 
@@ -76,7 +78,7 @@
                                     ?>
                                     <div class="col-md-6">
                                         <label class="mt-2">Carrera</label>
-                                        <select class="form-control" id="id_carreraU" name="id_carreraU" required="">
+                                        <select class="form-control asesor-input" id="id_carreraU" name="id_carreraU" required="">
                                             <option value="">Selecciona Carrera</option>
                                             <?php  ?>
                                             <?php foreach ($datos as $key => $value) : ?>
@@ -88,21 +90,21 @@
                             </div>
                         </div>
                     </div>
-                    <div id="estudiante" class="col-md-12 mt-2">
+                    <div id="estudianteU" class="col-md-12 mt-2">
                         <div class="frmEstudiante" id="frmEstudianteU">
                             <div class="container estudiante-wrap">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="mt-2">No. Control</label>
-                                        <input type="text" class="form-control" id="no_controlU" name="no_controlU" required="">
+                                        <input type="text" class="form-control estudiante-input" id="no_controlU" name="no_controlU" required="">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Genero</label>
-                                        <input type="text" class="form-control" id="generoU" name="generoU" required="">
+                                        <input type="text" class="form-control estudiante-input" id="generoU" name="generoU" required="">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Periodo Ingreso</label>
-                                        <input type="text" name="periodo_ingresoU" id="periodo_ingresoU" class="form-control" readonly="" required="">
+                                        <input type="text" name="periodo_ingresoU" id="periodo_ingresoU" class="form-control estudiante-input" readonly="" required="">
                                     </div>
                                 </div>
                             </div>

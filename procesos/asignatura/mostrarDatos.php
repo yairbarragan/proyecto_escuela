@@ -1,6 +1,6 @@
 <?php 
-	require_once "../../clases/Asignatura.php";
-	$obj   = new Asignatura(); //creo mi objeto
+require_once "../../clases/Asignatura.php";
+$obj   = new Asignatura(); //creo mi objeto
 $datos = $obj->mostrarDatos(); //creo mi nueva instancia
 
 $tabla = '<table id="iddatatable" class="table-striped table-bordered
@@ -16,17 +16,6 @@ $tabla = '<table id="iddatatable" class="table-striped table-bordered
 				<td style="max-width: 64px;">Opciones</td>
 			</tr>
 		</thead>
-		<tfoot style="background-color:#ccc;color:white;font-weight:bold;height:40px;">
-			<tr>
-			    <td>No.</td>
-			    <td>Nombre</td>
-                <td>Creditos</td>
-				<td>Carrera</td>
-                <td>Competencia</td>
-                <td>Área Aplicación</td>
-                <td>Opciones</td>
-			</tr>
-		</tfoot>
 		<tbody class="body-tabla">';
 
 $datosTabla = "";

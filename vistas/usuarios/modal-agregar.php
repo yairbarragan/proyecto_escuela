@@ -61,11 +61,11 @@
                                 <div class="row">
                                      <div class="col-md-6">
                                         <label class="mt-2">No. Empleado</label>
-                                        <input type="text" class="form-control" id="no_empleado" name="no_empleado" required="">
+                                        <input type="text" class="form-control reset asesor-input" id="no_empleado" name="no_empleado">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Grado Estudios</label>
-                                        <input type="text" class="form-control" id="grado_estudios" name="grado_estudios" required="">
+                                        <input type="text" class="form-control reset asesor-input" id="grado_estudios" name="grado_estudios">
                                     </div>
                                     <?php 
                                     $sql = "SELECT id_carrera, nombre 
@@ -76,7 +76,7 @@
                                     ?>
                                     <div class="col-md-6">
                                         <label class="mt-2">Carrera</label>
-                                        <select class="form-control" id="id_carrera" name="id_carrera" required="">
+                                        <select class="form-control reset asesor-input" id="id_carrera" name="id_carrera">
                                             <option value="">Selecciona Carrera</option>
                                             <?php  ?>
                                             <?php foreach ($datos as $key => $value) : ?>
@@ -94,15 +94,15 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="mt-2">No. Control</label>
-                                        <input type="text" class="form-control" id="no_control" name="no_control" required="">
+                                        <input type="text" class="form-control reset estudiante-input" id="no_control" name="no_control">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Genero</label>
-                                        <input type="text" class="form-control" id="genero" name="genero" required="">
+                                        <input type="text" class="form-control reset estudiante-input" id="genero" name="genero">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Periodo Ingreso</label>
-                                        <input type="text" name="periodo_ingreso" id="periodo_ingreso" class="form-control" readonly="" required="">
+                                        <input type="text" name="periodo_ingreso" id="periodo_ingreso" class="form-control reset estudiante-input" readonly="">
                                     </div>
                                 </div>
                             </div>

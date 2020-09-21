@@ -16,6 +16,7 @@
                 onsubmit="return actualizarDatos()">
                 
                 <div class="row">
+                    <input type="text" id="id_carrera" name="id_carrera" hidden="">
                     <!-- Carrera -->
                     <div class="col-md-6">
                         <label class="mt-2">Nombre</label>
@@ -23,7 +24,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="mt-2">Clave</label>
-                        <input type="text" class="form-control" id="emailU" name="emailU" required="">
+                        <input type="text" class="form-control" id="claveU" name="claveU" required="">
                     </div>
                 </div><!-- ./ div row -->
 
