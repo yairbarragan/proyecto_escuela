@@ -83,6 +83,27 @@ class Carrera extends Conexion {
 	    }
 	    $query->close();
 	}
+	public function eliminarCarreraAsesor($id_carrera) {
+		$sql = "DELETE FROM t_carrera_asesor where id_carrera=:id_carrera";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_carrera", $id_carrera, PDO::PARAM_INT);
+	    return $query->execute();
+	    $query->close();
+	}
+	public function eliminarCarreraEspecialidad($id_carrera) {
+		$sql = "DELETE FROM t_carrera_especialidad where id_carrera=:id_carrera";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_carrera", $id_carrera, PDO::PARAM_INT);
+	    return $query->execute();
+	    $query->close();
+	}
+	public function eliminarAsignaturaCarrera($id_carrera) {
+		$sql = "DELETE FROM t_asignatura_carrera where id_carrera=:id_carrera";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_carrera", $id_carrera, PDO::PARAM_INT);
+	    return $query->execute();
+	    $query->close();
+	}
 	public function eliminarDatos($id_carrera) {
 		$sql = "DELETE FROM t_cat_carrera where id_carrera=:id_carrera";
 	    $query = Conexion::conectar()->prepare($sql);

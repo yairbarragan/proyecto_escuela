@@ -28,6 +28,17 @@ function mostrarDatos() {
 }
 mostrarDatos(); //cargaDatos
 
+
+
+
+
+
+
+
+
+
+
+/// entregable
 function mostrarDatosEntregable() {
     //carga con datatables
     $.ajax({

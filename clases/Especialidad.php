@@ -7,18 +7,24 @@ class Especialidad extends Conexion {
 	public function mostrarDatos() {
 		$sql = "SELECT especialidad.nombre,
 					   especialidad.id_especialidad,
-					   especialidad.periodo_vigencia,
-			           carrera.nombre as carreraNombre
-				  FROM t_cat_especialidad as especialidad
-			INNER JOIN t_carrera_especialidad as carEsp on especialidad.id_especialidad = carEsp.id_especialidad
-			INNER JOIN t_cat_carrera as carrera on carrera.id_carrera = carEsp.id_carrera
-				  ";
+					   especialidad.periodo_vigencia
+				  FROM t_cat_especialidad as especialidad";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
 		return $query->fetchAll();
 		$query->close();
 	}
-
+	public function nombreCarrera($id_especialidad) {
+		$sql = "SELECT carrera.nombre
+				  FROM t_cat_carrera as carrera
+			INNER JOIN t_carrera_especialidad as carEsp 
+			        on carrera.id_carrera = carEsp.id_carrera
+			       and carEsp.id_especialidad = '$id_especialidad'";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->execute();
+		return $query->fetch()[0];
+		$query->close();
+	}
 	public function insertarDatos($datos) {
 		$sql = "INSERT INTO t_cat_especialidad (nombre,periodo_vigencia)
 		  		   VALUES (:nombre,:periodo_vigencia)";
@@ -30,7 +36,6 @@ class Especialidad extends Conexion {
 		return $con->lastInsertId();
 		$query->close();
 	}
-
 	public function insertarDatosCarreraEspecialidad($datos) {
 		$sql = "INSERT INTO t_carrera_especialidad (id_carrera,id_especialidad)
 		  		   VALUES (:id_carrera,:id_especialidad)";
@@ -40,22 +45,28 @@ class Especialidad extends Conexion {
 		return $query->execute();
 		$query->close();
 	}
-
 	public function obtenerDatos($id) {
 	    $sql = "SELECT 	esp.nombre,
 	   				   	esp.periodo_vigencia,
-       					carreraEsp.id_carrera,
        					esp.id_especialidad
   				  FROM 	t_cat_especialidad as esp
-			INNER JOIN 	t_carrera_especialidad as carreraEsp on esp.id_especialidad = 				carreraEsp.id_especialidad
-				   AND 	esp.id_especialidad = :id";
+				 WHERE 	esp.id_especialidad = :id";
 	    $query = Conexion::conectar()->prepare($sql);
 	    $query->bindParam(":id", $id,PDO::PARAM_INT);
 	    $query->execute();
 	    return $result = $query->fetch();
 	    $query->close();
   	}
-
+  	public function obtenerCarrera($id) {
+	    $sql = "SELECT id_carrera
+				  FROM t_carrera_especialidad
+				 WHERE id_especialidad = :id";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id", $id,PDO::PARAM_INT);
+	    $query->execute();
+	    return $result = $query->fetch()[0];
+	    $query->close();
+  	}
   	public function actualizarDatosEspecialidad($datos) {
 		$sql = "UPDATE t_cat_especialidad 
 	               SET nombre= :nombre,
@@ -68,7 +79,6 @@ class Especialidad extends Conexion {
 		return $query->execute();
 		$query->close();
   	}
-
   	public function actualizarDatosCarrera($datos) {
 		$sql = "UPDATE t_carrera_especialidad 
 	               SET id_carrera= :id_carrera
@@ -79,7 +89,6 @@ class Especialidad extends Conexion {
 		return $query->execute();
 		$query->close();
   	}
-
   	//elimina datos de tabla t_carrera_especialidad
   	public function eliminarDatos($id_especialidad) {
 	    $sql = "DELETE FROM t_carrera_especialidad where id_especialidad=:id_especialidad";
@@ -103,6 +112,21 @@ class Especialidad extends Conexion {
 
 	    $query->close();
 	}
+	public function buscarCarrera($id_especialidad) {
+	    $sql="SELECT * from t_carrera_especialidad where id_especialidad='$id_especialidad'";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->execute();
+	    $cuenta=$query->rowCount();
+	    if ($cuenta > 0) {
+	      return 1;
+	    } else {
+	      return 0;
+	    }
+	    $query->close();
+	}
+
+
+
 }// ./end class 
 
 ?>

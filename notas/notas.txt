@@ -1,16 +1,1 @@
-public function buscarAsesor($usuario,$noControl) {
-    $sql="	SELECT usuario.usuario,
-    			   asesor.no_empleado	
-    		from   t_usuario as usuario
-    	inner join t_asesor as asesor on usuario.id_usuario = asesor.id_usuario 
-    		and  usuario.usuario ='$usuario' or asesor.no_empleado = '$noControl'";
-    $query = Conexion::conectar()->prepare($sql);
-    $query->execute();
-    $cuenta=$query->rowCount();
-    if ($cuenta > 0) {
-      return 1;
-    } else {
-      return 0;
-    }
-    $query->close();
-}
+    //<td>'.$obj->nombreResponsable($value['id_usuario'])[0].'</td>

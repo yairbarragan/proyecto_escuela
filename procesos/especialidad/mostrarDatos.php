@@ -23,7 +23,7 @@ foreach ($datos as $key => $value) {
                 <td class="text-center"></td>
                 <td>'.$value['nombre']. '</td>
                 <td>'.$value['periodo_vigencia'].'</td>
-                <td>'.$value['carreraNombre'].'</td>
+                <td>'.$obj->nombreCarrera($value['id_especialidad']).'</td>
                 <td class="text-center">
 
                     <!-- botones mandan por medio de onclick a mis funciones en mysite.js -->

@@ -11,16 +11,50 @@ $datos = array(
 	'periodo_vigencia' => $periodo,
 	'id_especialidad'  => $id_especialidad,
 );
-if ($obj->actualizarDatosEspecialidad($datos)) {
-	$datos = array(
-		'id_carrera'      => $id_carrera,
-		'id_especialidad' => $id_especialidad,
-	);
-	if ($obj->actualizarDatosCarrera($datos)) {
-		echo 1;
+//echo $obj->insertarDatosCarreraEspecialidad($datos);
+//buscar id_carrera con id_especialidad
+
+//echo $obj->buscarCarrera($id_especialidad);
+if ($obj->buscarCarrera($id_especialidad)) {
+	if ($obj->actualizarDatosEspecialidad($datos)) {
+		$datos = array(
+			'id_carrera'      => $id_carrera,
+			'id_especialidad' => $id_especialidad,
+		);
+		if ($obj->actualizarDatosCarrera($datos)) {
+			echo 1;
+		} else {
+			echo 0;
+		}
 	} else {
 		echo 0;
 	}
 } else {
-	echo 0;
+	$datos = array(
+		'id_carrera'      => $id_carrera,
+		'id_especialidad' => $id_especialidad,
+	);
+	if ($obj->insertarDatosCarreraEspecialidad($datos)) {
+		$datos = array(
+			'nombre'           => $nombre,
+			'periodo_vigencia' => $periodo,
+			'id_especialidad'  => $id_especialidad,
+		);
+		if ($obj->actualizarDatosEspecialidad($datos)) {
+			$datos = array(
+				'id_carrera'      => $id_carrera,
+				'id_especialidad' => $id_especialidad,
+			);
+			if ($obj->actualizarDatosCarrera($datos)) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			echo 0;
+		}
+	} else {
+		echo 0;
+	}
 }
+/**/

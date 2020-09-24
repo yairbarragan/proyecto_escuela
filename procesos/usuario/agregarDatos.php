@@ -32,7 +32,11 @@ if ($id_usuario == 'existe') {
 				'grado_estudios' => $_POST['grado_estudios'],
 				'id_carrera'     => $_POST['id_carrera'],
 			);
-			echo $obj->insertarDatosAsesor($datos);
+			if ($obj->insertarDatosAsesor($datos)) {
+				echo 1;
+			} else {
+				echo 0;
+			}
 		} else {
 			if ($_POST['periodo_ingreso'] == '') {
 				$fecha = null;
@@ -45,7 +49,11 @@ if ($id_usuario == 'existe') {
 				'genero'          => $_POST['genero'],
 				'periodo_ingreso' => $fecha,
 			);
-			echo $obj->insertarDatosEstudiante($datos);
+			if ($obj->insertarDatosEstudiante($datos)) {
+				echo 1;
+			} else {
+				echo 0;
+			}
 		}
 	}
 }

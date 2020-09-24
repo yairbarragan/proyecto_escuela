@@ -16,10 +16,15 @@
                 onsubmit="return actualizarDatos()">
                 
                 <div class="row">
+                    <input type="text" id="id_asignatura" name="id_asignatura" placeholder="id_asignatura" hidden="">
                     <!-- Especialidad -->
                     <div class="col-md-6">
                         <label class="mt-2">Nombre</label>
                         <input type="text" class="form-control" id="nombreU" name="nombreU" required="">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="mt-2">Clave</label>
+                        <input type="text" name="claveU" id="claveU" class="form-control"  required="">
                     </div>
                     <div class="col-md-6">
                         <label class="mt-2">Creditos</label>
@@ -46,25 +51,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-
-                    <div class="col-md-6">
-                        <?php 
-                            $sql = "SELECT id_competencia, nombre 
-                                      FROM t_competencia";
-                            $query = Conexion::conectar()->prepare($sql);
-                            $query->execute();
-                            $datos = $query->fetchAll();
-                        ?>
-                        <label class="mt-2">Competencia</label>
-                        <select class="form-control" id="id_competenciaU" name="id_competenciaU"
-                                    required="">
-                            <option value="">Selecciona una competencia</option>
-                            <?php  ?>
-                            <?php foreach ($datos as $key => $value) : ?>
-                                <option value="<?php echo $value[0] ?>"><?php echo $value[1]; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+                    
                 </div><!-- ./ div row -->
 
                 <div class="d-flex justify-content-center mt-3">

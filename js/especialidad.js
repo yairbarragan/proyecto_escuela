@@ -83,7 +83,17 @@ function obtenerDatos(id) {
             $('#id_especialidad').val(json['id_especialidad']);
             $('#nombreU').val(json['nombre']);
             $('#periodo_vigenciaU').val(json['periodo_vigencia']);
-            $('#id_carreraU').val(json['id_carrera']);
+            
+
+            $.ajax({
+                type:"POST",
+                data:"id=" + id,
+                url:"../procesos/especialidad/obtenerNombreCarrera.php",
+                success:function(re){
+                    //alert(re);
+                    $('#id_carreraU').val(re);
+                }
+            });
         }
     });
 

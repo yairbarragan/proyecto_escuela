@@ -72,15 +72,14 @@ class Usuario extends Conexion {
 	    }
 	}
   	public function insertarDatosAsesor($datos) {
+  		return	$datos['id_carrera'];
       $sql = "INSERT INTO t_asesor (id_usuario,
-                              id_carrera,
                               no_empleado,
                               grado_estudios)
-          		   VALUES (:id_usuario,:id_carrera,:no_empleado,:grado_estudios)";
+          		   VALUES (:id_usuario,:no_empleado,:grado_estudios)";
       $con = Conexion::conectar();
       $query = $con->prepare($sql);
       $query->bindParam(":id_usuario", $datos['id_usuario'],PDO::PARAM_INT);
-      $query->bindParam(":id_carrera", $datos['id_carrera'],PDO::PARAM_INT);
       $query->bindParam(":no_empleado", $datos['no_empleado'],PDO::PARAM_INT);
       $query->bindParam(":grado_estudios", $datos['grado_estudios'],PDO::PARAM_STR);
       return $query->execute();
@@ -228,6 +227,65 @@ class Usuario extends Conexion {
 	    return $query->execute();
 	    $query->close();
 	}
+	//cuando cambio asesor a alumno elimina 
+	public function eliminarProyectoAsig($id_proyecto) {
+	    $sql = "DELETE FROM t_proyecto_asignatura where id_proyecto=:id_proyecto";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_proyecto", $id_proyecto, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $cuenta=$query->rowCount();
+	    $query->close();
+	}
+	public function eliminarProyectoEstudiante($id_proyecto) {
+	    $sql = "DELETE FROM t_proyecto_estudiante where id_proyecto=:id_proyecto";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_proyecto", $id_proyecto, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $query->rowCount();
+	    $query->close();
+	}
+	public function eliminarEstudianteProyecto($id_estudiante) {
+	    $sql = "DELETE FROM t_proyecto_estudiante where id_estudiante=:id_estudiante";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $query->rowCount();
+	    $query->close();
+	}
+	public function eliminarAsignaturaEstudiante($id_estudiante) {
+	    $sql = "DELETE FROM t_asignatura_estudiante where id_estudiante=:id_estudiante";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $query->rowCount();
+	    $query->close();
+	}
+	public function eliminarProyectoArchivo($id_proyecto) {
+	    $sql = "DELETE FROM t_archivos where id_proyecto=:id_proyecto";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_proyecto", $id_proyecto, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $query->rowCount();
+	    $query->close();
+	}
+	public function eliminarProyecto($id_proyecto) {
+	    $sql = "DELETE FROM t_proyecto where id_proyecto=:id_proyecto";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_proyecto", $id_proyecto, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $query->rowCount();
+	    $query->close();
+	}
+	public function eliminarAsesorCarrera($id_asesor) {
+	    $sql = "DELETE FROM t_carrera_asesor where id_asesor=:id_asesor";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_asesor", $id_asesor, PDO::PARAM_INT);
+	    return $query->execute();
+	    //return $query->rowCount();
+	    $query->close();
+	}
+	// end eliminar datos cascada asesor
+
 	public function eliminarDatos($id_usuario) {
 		if (self::existeUsuarioAsesor($id_usuario)) {
 			self::eliminarDatosAsesor($id_usuario);
@@ -271,6 +329,36 @@ class Usuario extends Conexion {
 	}
 	public function buscarIdRol($id_usuario) {
 	    $sql="SELECT id_rol_usuario from t_usuario where id_usuario='$id_usuario'";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->execute();
+	    $user=$query->fetch();
+	    return $user[0];
+	    $query->close();
+	}
+	public function buscarIDAsesor($id_usuario) {
+	    $sql="SELECT id_asesor 
+	            from t_asesor 
+	           where id_usuario='$id_usuario'";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->execute();
+	    $user=$query->fetch();
+	    return $user[0];
+	    $query->close();
+	}
+	public function buscarIDProyecto($id_asesor) {
+	    $sql="SELECT id_proyecto 
+	            from t_proyecto 
+	           where id_asesor='$id_asesor'";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->execute();
+	    $user=$query->fetch();
+	    return $user[0];
+	    $query->close();
+	}
+	public function buscarIDEstudiante($id_usuario) {
+	    $sql="SELECT id_estudiante 
+	            from t_estudiante
+	           where id_usuario='$id_usuario'";
 	    $query = Conexion::conectar()->prepare($sql);
 	    $query->execute();
 	    $user=$query->fetch();

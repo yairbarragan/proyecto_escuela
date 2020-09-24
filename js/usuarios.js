@@ -44,6 +44,11 @@ $(document).ready(function(){
 	});
 
     $($('#id_rol_usuarioU')).change(function(){
+        swal({
+          title: "Cambiar tipo de usuario?",
+          text: "Al cambiar de tipo de usuario se borrará informacion relacionada a usuario estudiante/asesor!",
+          icon: "warning",
+        });
         if ($('#id_rol_usuarioU').val() == 2) {
             $(".asesor-input").prop('required',true);
             $('.estudiante-input').removeAttr('required')
@@ -99,9 +104,11 @@ function insertarDatos() {
         data:datos,
         url:"../procesos/usuario/agregarDatos.php",
         success:function(r){
-            //alert(r);
+            alert(r);
             if(r==1){
                 $('#frmNuevo')[0].reset();
+                $('#asesor').hide();
+                $('#estudiante').hide();
                 mostrarDatos();
                 swal("!Guardado con exito¡",":D","success");
             } else if (r==2) {

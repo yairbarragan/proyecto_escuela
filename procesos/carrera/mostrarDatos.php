@@ -39,5 +39,4 @@ foreach ($datos as $key => $value) {
 }
 echo $tabla.$datosTabla.'</tbody></table>';
 
-	
  ?>
