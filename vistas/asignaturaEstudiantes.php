@@ -19,15 +19,15 @@ if (isset($_SESSION['datosUsuario'])) {
 				<br>
 				
 				<div class="d-flex flex-column align-items-center align-items-md-start">
-					<p class="titulo"><b>ADMINISTRADOR ASIGNATURA</b></p>
-					<span class="btn btn-primary" data-toggle="modal" data-target="#agregarNuevo" data-backdrop="static">
+					<p class="titulo"><b>ADMINISTRADOR ASIGNATURA ESTUDIANTES</b></p>
+					<span class="btn btn-primary" data-toggle="modal" data-target="#agregarEstudiante" data-backdrop="static">
 						Nuevo <span class="fa fa-plus-circle ml-2"></span>
 					</span>
 				</div>
 
 				<div class="">
 					<hr>
-					<div id="tablaCarga"></div><!-- Cargando tabla dinamicamente con script final -->
+					<div id="tablaCargaEstudiante"></div><!-- Cargando tabla dinamicamente con script final -->
 				</div>
 
 			</div><!-- ./contenido principal -->
@@ -39,9 +39,7 @@ if (isset($_SESSION['datosUsuario'])) {
 
 	</div>
 	<!-- MODALES -->
-		<?php include "asignatura/modal-agregar.php"; ?>
-		<?php include "asignatura/modal-actualizar.php"; ?>
-		<?php include "asignatura/modal-agregar-area.php"; ?>
+		<?php include "asignatura/modal-agregar-estudiante.php"; ?>
 	<!-- END MODALES -->
 
 

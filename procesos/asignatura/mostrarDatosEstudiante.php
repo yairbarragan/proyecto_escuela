@@ -1,16 +1,15 @@
 <?php 
-	require_once "../../clases/Especialidad.php";
-	$obj   = new Especialidad(); //creo mi objeto
-$datos = $obj->mostrarDatos(); //creo mi nueva instancia
+require_once "../../clases/Asignatura.php";
+$obj   = new Asignatura(); //creo mi objeto
+$datos = $obj->mostrarDatosEstudiante(); //creo mi nueva instancia
 
-$tabla = '<table id="iddatatable" class="table-striped table-bordered
+$tabla = '<table id="iddatatableEstudiante" class="table-striped table-bordered
 		dt-responsive nowrap" style="width:100%">
         <thead class="head-tabla">
 			<tr class="thead">
 				<td style="max-width: 28px;">No.</td>
 				<td>Nombre</td>
-				<td>Periodo Vigencia</td>
-				<td>Carrera</td>
+                <td>No Control</td>
 				<td style="max-width: 64px;">Opciones</td>
 			</tr>
 		</thead>
@@ -22,18 +21,15 @@ foreach ($datos as $key => $value) {
 	$datosTabla = $datosTabla . '<tr>
                 <td class="text-center"></td>
                 <td>'.$value['nombre']. '</td>
-                <td>'.$value['periodo_vigencia'].'</td>
-                <td>'.$value['carreraNombre'].'</td>
+                <td>'.$value['no_control'].'</td>
+               
                 <td class="text-center">
 
                     <!-- botones mandan por medio de onclick a mis funciones en mysite.js -->
                     <!-- Editar -->
-                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarRegistro" data-backdrop="static" id="editar" onclick="obtenerDatos('.$value['id_especialidad'].')">
-                        <span class="fas fa-edit"></span>
-                    </span>
 
                     <!-- Eliminar -->
-                    <span class="btn btn-danger btn-sm ml-2" id="eliminar" onclick="eliminarDatos('.$value['id_especialidad'].')">
+                    <span class="btn btn-danger btn-sm ml-2" id="eliminar" onclick="eliminarDatos('.$value['id_estudiante'].')">
                         <span class="far fa-trash-alt"></span>
                     </span>
                 </td>

@@ -23,5 +23,11 @@
 		<li class="nav-item">
 			<a class="nav-link" href="usuarios.php"> <span class="fas fa-users"></span> Usuarios</a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="competencia.php"> <span class="fas fa-clipboard-list"></span>Competencia</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="proyecto.php"> <span class="fas fa-folder-open"></span> Proyecto</a>
+		</li>
 	</ul>
 </div>

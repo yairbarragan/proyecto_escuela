@@ -16,6 +16,7 @@
                 onsubmit="return actualizarDatos()">
                 
                 <div class="row">
+                    <input type="text" id="id_especialidad" name="id_especialidad" hidden="">
                     <!-- Especialidad -->
                     <div class="col-md-6">
                         <label class="mt-2">Nombre</label>
@@ -23,7 +24,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="mt-2">Periodo Vigencia</label>
-                        <input type="text" name="periodo_vigenciaU" id="periodo_vigenciaU" class="form-control" readonly="" required="">
+                        <input type="text" name="periodo_vigenciaU" id="periodo_vigenciaU" class="form-control" required="">
                     </div>
                     <div class="col-md-12">
                         <?php 

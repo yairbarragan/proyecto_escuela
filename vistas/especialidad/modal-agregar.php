@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="mt-2">Periodo Vigencia</label>
-                        <input type="text" name="periodo_vigencia" id="periodo_vigencia" class="form-control" readonly="" required="">
+                        <input type="text" name="periodo_vigencia" id="periodo_vigencia" class="form-control" required="">
                     </div>
                     <div class="col-md-12">
                         <?php 

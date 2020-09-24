@@ -1,49 +1,49 @@
-<!-- MODAL AGREGAR NUEVO -->
-<div class="modal fade" id="agregarNuevo" tabindex="-1">
+<!-- MODAL ACTUALIZAR NUEVO -->
+<div class="modal fade" id="editarRegistro" tabindex="-1">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">NUEVA ASIGNATURA</h5>
+                <h5 class="modal-title" id="exampleModalLabel">ACTUALIZAR CARRERA</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <div class="modal-body py-3">
-                <!-- FORM NUEVO -->
-                <form class="container-fluid" id="frmNuevo" method="POST" 
-                onsubmit="return insertarDatos()">
+                <!-- FORM ACTUALIZAR -->
+                <form class="container-fluid" id="frmActualizar" method="POST" 
+                onsubmit="return actualizarDatos()">
                 
                 <div class="row">
-                    <!-- Especialidad -->
-                    <div class="col-md-6">
+                    <input type="text" id="id_competencia" name="id_competencia" hidden="">
+                    <div class="col-md-12">
                         <label class="mt-2">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required="">
+                        <input type="text" class="form-control" id="nombreU" name="nombreU" required="">
                     </div>
-                    <div class="col-md-6">
-                        <label class="mt-2">Clave</label>
-                        <input type="text" class="form-control" id="clave" name="clave" required="">
+                    <div class="col-md-12">
+                        <label class="mt-2">Campo Desarrollo Asignatura</label>
+                        <input type="text" class="form-control" id="campo_desar_asigU" name="campo_desar_asigU" required="">
                     </div>
-                    <div class="col-md-6">
-                        <label class="mt-2">Creditos</label>
-                        <input type="text" name="creditos" id="creditos" class="form-control"  required="">
+                    <div class="col-md-12">
+                        <label class="mt-2">Campo Desarrollo Proyecto Integrador</label>
+                        <input type="text" class="form-control" id="campo_desar_proyintU" name="campo_desar_proyintU" required="">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <?php 
                             require_once "../clases/Conexion.php"; 
                             $c        = new Conexion();
                             $conexion =$c->conectar();
-                            $sql = "SELECT id_carrera, nombre 
-                                      FROM t_cat_carrera";
+                            $sql = "SELECT id_asignatura, nombre 
+                                      FROM t_asignatura";
                             $query = Conexion::conectar()->prepare($sql);
                             $query->execute();
                             $datos = $query->fetchAll();
                         ?>
-                        <label class="mt-2">Carrera</label>
-                        <select class="form-control" id="id_carrera" name="id_carrera"
+                        <label class="mt-2">Asignatura</label>
+                        <select class="form-control" id="id_asignaturaU" name="id_asignaturaU"
                                     required="">
-                            <option value="">Selecciona una carrera</option>
+                            <option value="">Selecciona una asignatura</option>
                             <?php  ?>
                             <?php foreach ($datos as $key => $value) : ?>
                                 <option value="<?php echo $value[0] ?>"><?php echo $value[1]; ?></option>
@@ -53,7 +53,7 @@
                 </div><!-- ./ div row -->
 
                 <div class="d-flex justify-content-center mt-3">
-                    <button id="btnAgregar" class="btn btn-primary">
+                    <button id="btnActualizar" class="btn btn-primary">
                         GUARDAR
                     </button>
                     <button type="button" class="btn btn-danger ml-2" data-dismiss="modal">
@@ -63,9 +63,9 @@
                 <!-- USUARIOS -->
 
                 </form>
-                <!-- END FORM NUEVO -->
+                <!-- END FORM ACTUALIZAR -->
             </div>
         </div>
     </div>
 </div>
-<!-- END MODAL AGREGAR NUEVO -->
+<!-- END MODAL ACTUALIZAR -->

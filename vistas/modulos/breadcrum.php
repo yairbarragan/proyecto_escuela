@@ -18,6 +18,16 @@ $urlFinal = $urlAux[0];
 		echo '<span class="fas fa-book-open icon mr-3"><span class="rombo"></span></span>';
 	} else if ($urlFinal == "asignatura") {
 		echo '<span class="fas fa-book icon mr-3"><span class="rombo"></span></span>';
+	} else if ($urlFinal == "asignaturaEstudiantes") {
+		echo '<span class="fas fa-users icon mr-3"><span class="rombo"></span></span>';
+	} else if ($urlFinal == "proyecto") {
+		echo '<span class="fas fa-folder-open icon mr-3"><span class="rombo"></span></span>';
+	} else if ($urlFinal == "proyectoMaterias") {
+		echo '<span class="fas fa-folder-open icon mr-3"><span class="rombo"></span></span>';
+	} else if ($urlFinal == "competencia") {
+		echo '<span class="fas fa-clipboard-list icon mr-3"><span class="rombo"></span></span>';
+	} else if ($urlFinal == "competenciaEntregable") {
+		echo '<span class="fas fa-clipboard-list icon mr-3"><span class="rombo"></span></span>';
 	} 
 	?>
 	<?php echo "<p class='bread-titulo ml-2'>" .$urlFinal. "</p>"; ?> <!-- $urlFinal declarada en plantilla.php -->

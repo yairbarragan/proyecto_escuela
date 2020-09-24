@@ -19,7 +19,7 @@ if (isset($_SESSION['datosUsuario'])) {
 				<br>
 				
 				<div class="d-flex flex-column align-items-center align-items-md-start">
-					<p class="titulo"><b>ADMINISTRADOR ASIGNATURA</b></p>
+					<p class="titulo"><b>ADMINISTRADOR COMPETENCIAS</b></p>
 					<span class="btn btn-primary" data-toggle="modal" data-target="#agregarNuevo" data-backdrop="static">
 						Nuevo <span class="fa fa-plus-circle ml-2"></span>
 					</span>
@@ -39,9 +39,8 @@ if (isset($_SESSION['datosUsuario'])) {
 
 	</div>
 	<!-- MODALES -->
-		<?php include "asignatura/modal-agregar.php"; ?>
-		<?php include "asignatura/modal-actualizar.php"; ?>
-		<?php include "asignatura/modal-agregar-area.php"; ?>
+		<?php include "competencia/modal-agregar.php"; ?>
+		<?php include "competencia/modal-actualizar.php"; ?>
 	<!-- END MODALES -->
 
 
@@ -49,7 +48,7 @@ if (isset($_SESSION['datosUsuario'])) {
 	include "modulos/footer.php"; 
 	?>
 
-	<script src="../js/asignatura.js"></script>
+	<script src="../js/competencia.js"></script>
 	
 	<?php 
 } else {

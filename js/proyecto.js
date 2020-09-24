@@ -1,14 +1,12 @@
 $(document).ready(function(){
 
-	
-
 })
 
 function mostrarDatos() {
     //carga con datatables
     $.ajax({
         type:"POST",
-        url:"../procesos/asignatura/mostrarDatos.php",
+        url:"../procesos/proyecto/mostrarDatos.php",
         success: function(r){
             $('#tablaCarga').html(r);
             var t = $('#iddatatable').DataTable( {
@@ -30,14 +28,14 @@ function mostrarDatos() {
 }
 mostrarDatos(); //cargaDatos
 
-function mostrarDatosEstudiante() {
+function mostrarDatosMaterias() {
     //carga con datatables
     $.ajax({
         type:"POST",
-        url:"../procesos/asignatura/mostrarDatosEstudiante.php",
+        url:"../procesos/proyecto/mostrarDatosMaterias.php",
         success: function(r){
-            $('#tablaCargaEstudiante').html(r);
-            var t = $('#iddatatableEstudiante').DataTable( {
+            $('#tablaCargaMaterias').html(r);
+            var t = $('#iddatatableMaterias').DataTable( {
                 "columnDefs": [ {
                     "searchable": false,
                     "orderable": false,
@@ -54,4 +52,4 @@ function mostrarDatosEstudiante() {
         }
     });
 }
-mostrarDatosEstudiante(); //cargaDatos
+mostrarDatosMaterias(); //cargaDatos

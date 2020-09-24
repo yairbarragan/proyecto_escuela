@@ -166,6 +166,9 @@ label {
 .menu-wrap .nav-link:hover {
   color: gray; }
 
+.menu-wrap .nav-item span {
+  width: 30px; }
+
 @media (min-width: 768px) {
   .menu-wrap {
     margin-left: 0; }
