@@ -72,14 +72,15 @@ class Usuario extends Conexion {
 	    }
 	}
   	public function insertarDatosAsesor($datos) {
-  		return	$datos['id_carrera'];
       $sql = "INSERT INTO t_asesor (id_usuario,
+                              id_carrera,
                               no_empleado,
                               grado_estudios)
-          		   VALUES (:id_usuario,:no_empleado,:grado_estudios)";
+          		   VALUES (:id_usuario,:id_carrera,:no_empleado,:grado_estudios)";
       $con = Conexion::conectar();
       $query = $con->prepare($sql);
       $query->bindParam(":id_usuario", $datos['id_usuario'],PDO::PARAM_INT);
+      $query->bindParam(":id_carrera", $datos['id_carrera'],PDO::PARAM_INT);
       $query->bindParam(":no_empleado", $datos['no_empleado'],PDO::PARAM_INT);
       $query->bindParam(":grado_estudios", $datos['grado_estudios'],PDO::PARAM_STR);
       return $query->execute();

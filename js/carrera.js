@@ -102,7 +102,7 @@ function eliminarDatos(id) {
             data:"id=" + id,
             url:"../procesos/carrera/eliminarDatos.php",
             success:function(r){
-                alert(r);
+                //alert(r);
                 if(r==1){
                     mostrarDatos();
                     swal("!Eliminado con exito¡",":D","info");

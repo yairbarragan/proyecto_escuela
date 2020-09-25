@@ -84,9 +84,13 @@ class Carrera extends Conexion {
 	    $query->close();
 	}
 	public function eliminarCarreraAsesor($id_carrera) {
-		$sql = "DELETE FROM t_carrera_asesor where id_carrera=:id_carrera";
+		$id_null = null;
+		$sql = "UPDATE t_asesor 
+	           	   SET id_carrera=:id_car
+                 WHERE id_carrera=:id_carrera";
 	    $query = Conexion::conectar()->prepare($sql);
 	    $query->bindParam(":id_carrera", $id_carrera, PDO::PARAM_INT);
+	    $query->bindParam(":id_car", $id_null, PDO::PARAM_INT);
 	    return $query->execute();
 	    $query->close();
 	}

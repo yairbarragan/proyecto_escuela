@@ -129,9 +129,50 @@ function eliminarDatos(id) {
     });
 }
 
+// area
+function insertarDatosArea() {
+    datos=$('#frmNuevaArea').serialize();
+    $.ajax({
+        type:"POST",
+        data:datos,
+        url:"../procesos/asignatura/agregarDatosArea.php",
+        success:function(r){
+            //alert(r);
+            if(r==1){
+                mostrarDatos();
+                swal("!Guardado con exito¡",":D","success");
+            } else if (r==2) {
+                swal("!La clave de asignatura ya existe¡",":0","warning");
+            } else{
+                swal("!No se pudo Guardar¡",":(","error");
+            }
+        }
+    });
+    return false;
+}
+
+function obtenerDatosArea(id) {
+    $.ajax({
+        type:"POST",
+        data:"id=" + id,
+        url:"../procesos/asignatura/obtenerDatosArea.php",
+        success:function(r){
+            //alert(r);
+            json=jQuery.parseJSON(r);
+            $('#id_asignaturaA').val(json['id_asignatura']);
+            $('#nombre_asig').val(json['nombre']);
+            $('#aportacion').val(json['aportacion']);
+            $('#nodo_problema').val(json['nodo_problema']);
+        }
+    });
+
+    return false;
+}
 
 
 
+
+//estudiante
 
 
 function mostrarDatosEstudiante() {
@@ -159,3 +200,40 @@ function mostrarDatosEstudiante() {
     });
 }
 mostrarDatosEstudiante(); //cargaDatos
+
+function obtenerDatosEstudiante(id) {
+    $.ajax({
+        type:"POST",
+        data:"id=" + id,
+        url:"../procesos/asignatura/obtenerDatosEstudiante.php",
+        success:function(r){
+            //alert(r);
+            json=jQuery.parseJSON(r);
+            $('#id_estudianteU').val(json['id_estudiante']);
+            $('#calif').val(json['calif']);
+        }
+    });
+
+    return false;
+}
+
+function actualizarDatosEstudiante() {
+    datos=$('#frmActualizar').serialize();
+    $.ajax({
+        type:"POST",
+        data:datos,
+        url:"../procesos/asignatura/actualizarDatosEstudiante.php",
+        success:function(r){
+            alert(r);
+            if(r==1){
+                mostrarDatosEstudiante();
+                swal("!Guardado con exito¡",":D","success");
+            } else if (r==2) {
+                swal("!La clave ya existe¡",":0","warning");
+            } else{
+                swal("!No se pudo Guardar¡",":(","error");
+            }
+        }
+    });
+    return false;
+}

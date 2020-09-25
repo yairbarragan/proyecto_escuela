@@ -1,6 +1,6 @@
 <!-- MODAL AGREGAR NUEVO -->
 <div class="modal fade" id="agregarEstudiante" tabindex="-1">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -16,17 +16,15 @@
                 onsubmit="return insertarDatos()">
                 
                 <div class="row">
-                    <input type="text" id="id_asignatura" name="id_asignatura" 
-                    placeholder="id_asignatura">
                     
                     <?php 
                         require_once "../clases/Conexion.php"; 
                         $c        = new Conexion();
                         $conexion =$c->conectar();
                         $sql = "SELECT est.id_estudiante,
-                                       usu.nombre 
+                                       usu.nombre
                                   FROM t_estudiante as est
-                            INNER JOIN t_usuario as usu";
+                            INNER JOIN t_usuario as usu on est.id_usuario=usu.id_usuario";
                         $query = Conexion::conectar()->prepare($sql);
                         $query->execute();
                         $datos = $query->fetchAll();

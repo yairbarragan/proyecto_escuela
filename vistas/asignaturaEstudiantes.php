@@ -11,7 +11,6 @@ if (isset($_SESSION['datosUsuario'])) {
 			<?php include "modulos/header.php"; ?> <!-- header top bar -->
 
 
-
 			<div class="container-fluid py-4 h-100 main-content carrera-view"> <!-- contenido principal -->
 				
 				<?php include "modulos/breadcrum.php"; ?> <!-- breadcrum -->
@@ -40,6 +39,7 @@ if (isset($_SESSION['datosUsuario'])) {
 	</div>
 	<!-- MODALES -->
 		<?php include "asignatura/modal-agregar-estudiante.php"; ?>
+		<?php include "asignatura/modal-actualizar-estudiante.php"; ?>
 	<!-- END MODALES -->
 
 

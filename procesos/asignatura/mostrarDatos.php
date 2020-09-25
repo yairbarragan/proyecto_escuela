@@ -29,12 +29,12 @@ foreach ($datos as $key => $value) {
                 <td>'.$value['creditos'].'</td>
                 <td>'.$obj->nombreCarrera($value['id_asignatura']).'</td>
                 <td class="text-center">
-                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#agregarArea" data-backdrop="static" id="editar" onclick="obtenerDatos('.$value['id_asignatura'].')">
+                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#agregarArea" data-backdrop="static" id="editar" onclick="obtenerDatosArea('.$value['id_asignatura'].')">
                         <span class="fas fa-plus"></span>
                     </span>
                 </td>
                 <td class="text-center">
-                    <a href="asignaturaEstudiantes.php" class="btn btn-info btn-sm fas fa-plus" onclick="asignaturaEstudiantes('.$value['id_asignatura'].')"></a>
+                    <a href="asignaturaEstudiantes.php?id='.$value['id_asignatura'].'" class="btn btn-info btn-sm fas fa-plus"></a>
                 </td>
             
                 <td class="text-center">

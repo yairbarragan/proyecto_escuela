@@ -175,23 +175,117 @@ class Asignatura extends Conexion {
 	    }
 	    $query->close();
 	}
-
-
-
+	public function eliminarDatos($id_asignatura) {
+		$sql = "DELETE FROM t_proyecto_asignatura where id_asignatura=:id_asignatura";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
+	    if ($query->execute()) {
+	    	$sql = "DELETE FROM t_asignatura_competencia where id_asignatura=:id_asignatura";
+		    $query = Conexion::conectar()->prepare($sql);
+		    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
+		    if ($query->execute()) {
+		    	$sql = "DELETE FROM t_asignatura_estudiante where id_asignatura=:id_asignatura";
+			    $query = Conexion::conectar()->prepare($sql);
+			    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
+			    if ($query->execute()) {
+			    	$sql = "DELETE FROM t_asignatura_carrera where id_asignatura=:id_asignatura";
+				    $query = Conexion::conectar()->prepare($sql);
+				    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
+				    if ($query->execute()) {
+				    	$sql = "DELETE FROM t_area_aplicacion where id_asignatura=:id_asignatura";
+					    $query = Conexion::conectar()->prepare($sql);
+					    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
+					    if ($query->execute()) {
+					    	$sql = "DELETE FROM t_asignatura where id_asignatura=:id_asignatura";
+						    $query = Conexion::conectar()->prepare($sql);
+						    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
+						    if ($query->execute()) {
+						    	return 1;
+						    } else {
+						    	return 0;
+						    }
+					    } else {
+					    	return 0;
+					    }
+				    } else {
+				    	return 0;
+				    }
+			    } else {
+			    	return 0;
+			    }
+		    } else {
+		    	return 0;
+		    }
+	    } else {
+	    	return 0;
+	    }
+	}
+	// area_aplicacion
+	public function obtenerDatosArea($id) {
+	    $sql = "SELECT 	area.nombre,
+	   				   	area.aportacion,
+       					area.nodo_problema,
+       					area.id_asignatura
+  				  FROM 	t_area_aplicacion as area
+				 WHERE 	area.id_asignatura = :id";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id", $id,PDO::PARAM_INT);
+	    $query->execute();
+	    return $result = $query->fetch();
+	    $query->close();
+  	}
+  	public function actualizarAreaAplicacion($datos) {
+		$sql = "UPDATE t_area_aplicacion
+	               SET aportacion= :aportacion,
+	                   nombre= :nombre,
+	                   nodo_problema= :nodo_problema
+                 WHERE id_asignatura=:id_asignatura";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->bindParam(":nodo_problema", $datos['nodo_problema'],PDO::PARAM_INT);
+		$query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
+		$query->bindParam(":aportacion", $datos['aportacion'],PDO::PARAM_STR);
+		$query->bindParam(":id_asignatura", $datos['id_asignatura'],PDO::PARAM_INT);
+		return $query->execute();
+		$query->close();
+	}
 
 	//estudiantes
 	public function mostrarDatosEstudiante() {
 		$sql = "SELECT est.id_estudiante,
 					   usu.nombre,
-					   est.no_control
+					   est.no_control,
+					   asiEst.calif
 				  FROM t_estudiante as est
-			INNER JOIN t_usuario as usu;";
+			INNER JOIN t_usuario as usu on est.id_usuario = usu.id_usuario
+			INNER JOIN t_asignatura_estudiante as asiEst 
+					ON est.id_estudiante = asiEst.id_estudiante
+				     ";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
 		return $query->fetchAll();
 		$query->close();
 	}
-
+	public function obtenerDatosEstudiante($id) {
+	    $sql = "SELECT 	asigEst.calif,
+	   				   	asigEst.id_estudiante
+  				  FROM 	t_asignatura_estudiante as asigEst
+				 WHERE 	asigEst.id_estudiante = :id";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id", $id,PDO::PARAM_INT);
+	    $query->execute();
+	    return $result = $query->fetch();
+	    $query->close();
+  	}
+  	public function actualizarDatosEstudiante($datos) {
+		$sql = "UPDATE t_asignatura_estudiante 
+	               SET calif= :calif
+                 WHERE id_estudiante=:id_estudiante";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->bindParam(":id_estudiante", $datos['id_estudiante'],PDO::PARAM_INT);
+		$query->bindParam(":calif", $datos['calif'],PDO::PARAM_STR);
+		return $query->execute();
+		$query->close();
+	}
 }
 
 ?>

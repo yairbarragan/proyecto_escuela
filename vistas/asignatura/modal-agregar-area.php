@@ -13,11 +13,11 @@
             <div class="modal-body py-3">
                 <!-- FORM NUEVO -->
                 <form class="container-fluid" id="frmNuevaArea" method="POST" 
-                onsubmit="return insertarDatos()">
+                onsubmit="return insertarDatosArea()">
                 
                 <div class="row">
-                    <input type="text" id="id_area_aplicacion" name="id_area_aplicacion" 
-                    placeholder="id_area_aplicacion">
+                    <input type="text" id="id_asignaturaA" name="id_asignaturaA" 
+                    placeholder="id_asignaturaA" hidden="">
                     <!-- Especialidad -->
                     <div class="col-md-6">
                         <label class="mt-2">Nombre</label>

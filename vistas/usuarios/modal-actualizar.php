@@ -47,8 +47,7 @@
                             $datos = $query->fetchAll();
                         ?>
                         <label class="mt-2">Tipo Usuario</label>
-                        <select class="form-control" id="id_rol_usuarioU" name="id_rol_usuarioU"
-                                    required="">
+                        <select class="form-control" id="id_rol_usuarioU" name="id_rol_usuarioU" required="">
                             <option value="">Selecciona tipo de usuario</option>
                             <?php  ?>
                             <?php foreach ($datos as $key => $value) : ?>
@@ -78,7 +77,7 @@
                                     ?>
                                     <div class="col-md-6">
                                         <label class="mt-2">Carrera</label>
-                                        <select class="form-control asesor-input" id="id_carreraU" name="id_carreraU" required="">
+                                        <select class="form-control asesor-input" id="id_carreraU" name="id_carreraU">
                                             <option value="">Selecciona Carrera</option>
                                             <?php  ?>
                                             <?php foreach ($datos as $key => $value) : ?>

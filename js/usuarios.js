@@ -20,6 +20,7 @@ $(document).ready(function(){
 	$('#estudiante').hide();
     $('.asesor-input').removeAttr('required');
     $('.estudiante-input').removeAttr('required');
+    $('#id_carreraU').prop('required',true);
 
 	$($('#id_rol_usuario')).change(function(){
 		if ($('#id_rol_usuario').val() == 2) {
@@ -104,7 +105,7 @@ function insertarDatos() {
         data:datos,
         url:"../procesos/usuario/agregarDatos.php",
         success:function(r){
-            alert(r);
+            //alert(r);
             if(r==1){
                 $('#frmNuevo')[0].reset();
                 $('#asesor').hide();
