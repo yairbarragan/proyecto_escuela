@@ -224,7 +224,7 @@ function actualizarDatosEstudiante() {
         data:datos,
         url:"../procesos/asignatura/actualizarDatosEstudiante.php",
         success:function(r){
-            alert(r);
+            //alert(r);
             if(r==1){
                 mostrarDatosEstudiante();
                 swal("!Guardado con exito¡",":D","success");
@@ -236,4 +236,54 @@ function actualizarDatosEstudiante() {
         }
     });
     return false;
+}
+
+function insertarEstudiante() {
+    datos=$('#frmNuevaEstudiante').serialize();
+    $.ajax({
+        type:"POST",
+        data:datos,
+        url:"../procesos/asignatura/agregarEstudiante.php",
+        success:function(r){
+            //alert(r);
+            if(r==1){
+                $('#frmNuevaEstudiante')[0].reset();
+                mostrarDatosEstudiante();
+                swal("!Guardado con exito¡",":D","success");
+            } else if (r==2) {
+                swal("!El estudiante ya se encuentra registrado¡",":0","warning");
+            } else{
+                swal("!No se pudo Guardar¡",":(","error");
+            }
+        }
+    });
+    return false;
+}
+
+function eliminarEstudiante(id) {
+    swal({
+      title: "¿Seguro de eliminar?",
+      text: "!Una vez eliminado no podra recuperarse¡",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+            type:"POST",
+            data:"id=" + id,
+            url:"../procesos/asignatura/eliminarEstudiante.php",
+            success:function(r){
+                alert(r);
+                if(r==1){
+                    mostrarDatosEstudiante();
+                    swal("!Eliminado con exito¡",":D","info");
+                } else{
+                    swal("!Error¡",":(","error");
+                }
+            }
+        });
+      }
+    });
 }

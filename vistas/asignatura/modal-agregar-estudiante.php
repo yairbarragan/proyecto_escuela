@@ -13,10 +13,10 @@
             <div class="modal-body py-3">
                 <!-- FORM NUEVO -->
                 <form class="container-fluid" id="frmNuevaEstudiante" method="POST" 
-                onsubmit="return insertarDatos()">
+                onsubmit="return insertarEstudiante()">
                 
                 <div class="row">
-                    
+                    <input type="text" id="id_asignatura" name="id_asignatura" value="<?php echo $_GET['id']; ?>">
                     <?php 
                         require_once "../clases/Conexion.php"; 
                         $c        = new Conexion();

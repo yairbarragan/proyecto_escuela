@@ -286,6 +286,34 @@ class Asignatura extends Conexion {
 		return $query->execute();
 		$query->close();
 	}
+	public function insertarEstudiante($datos) {
+		$sql = "INSERT INTO t_asignatura_estudiante (id_asignatura,id_estudiante)
+		  		   VALUES (:id_asignatura,:id_estudiante)";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->bindParam(":id_asignatura", $datos['id_asignatura'],PDO::PARAM_INT);
+		$query->bindParam(":id_estudiante", $datos['id_estudiante'],PDO::PARAM_INT);
+		return $query->execute();
+		$query->close();
+	}
+	public function existeEstudiante($id_estudiante) {
+	    $sql="SELECT * from t_asignatura_estudiante where id_estudiante='$id_estudiante'";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->execute();
+	    $cuenta=$query->rowCount();
+	    if ($cuenta > 0) {
+	      return 1;
+	    } else {
+	      return 0;
+	    }
+	    $query->close();
+	}
+	public function eliminarEstudiante($id_estudiante) {
+	    $sql = "DELETE FROM t_asignatura_estudiante where id_estudiante=:id_estudiante";
+	    $query = Conexion::conectar()->prepare($sql);
+	    $query->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
+	    return $query->execute();
+	    $query->close();
+	}
 }
 
 ?>

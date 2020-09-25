@@ -34,7 +34,7 @@ foreach ($datos as $key => $value) {
                     </span>
 
                     <!-- Eliminar -->
-                    <span class="btn btn-danger btn-sm ml-2" id="eliminar" onclick="eliminarDatosEstudiante('.$value['id_estudiante'].')">
+                    <span class="btn btn-danger btn-sm ml-2" id="eliminar" onclick="eliminarEstudiante('.$value['id_estudiante'].')">
                         <span class="far fa-trash-alt"></span>
                     </span>
                 </td>
