@@ -16,7 +16,7 @@
                 onsubmit="return insertarEstudiante()">
                 
                 <div class="row">
-                    <input type="text" id="id_asignatura" name="id_asignatura" value="<?php echo $_GET['id']; ?>">
+                    <input type="text" id="id_asignatura" name="id_asignatura" value="<?php echo $_GET['id']; ?>" hidden="">
                     <?php 
                         require_once "../clases/Conexion.php"; 
                         $c        = new Conexion();

@@ -11,6 +11,8 @@ $tabla = '<table id="iddatatable" class="table-striped table-bordered
 				<td>Nombre</td>
 				<td>Título</td>
                 <td>Área de Aplicación</td>
+                <td>Asesor</td>
+                <td>Estudiante</td>
                 <td>Agregar Materias</td>
 				<td style="max-width: 64px;">Opciones</td>
 			</tr>
@@ -25,6 +27,8 @@ foreach ($datos as $key => $value) {
                 <td>'.$value['nombre']. '</td>
                 <td>'.$value['titulo'].'</td>
                 <td>'.$value['area_aplicacion'].'</td>
+                <td>'.$obj->nombreAsesor($value['id_proyecto']).'</td>
+                <td>'.$obj->nombreEstudiante($value['id_proyecto']).'</td>
                 <td class="text-center">
                 <a href="proyectoMaterias.php" class="btn btn-info btn-sm fas fa-plus"></a>
                 </td>

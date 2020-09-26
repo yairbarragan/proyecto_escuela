@@ -1,5 +1,10 @@
 <?php 
 session_start();
+
+$rol    = $_SESSION['datosUsuario']['rol'];
+$idRol  = $_SESSION['datosUsuario']['idRol'];
+$idUsu  = $_SESSION['datosUsuario']['id'];
+
 if (isset($_SESSION['datosUsuario'])) {
 ?>
 	<div class="d-flex" style="overflow-x: hidden">
@@ -9,7 +14,6 @@ if (isset($_SESSION['datosUsuario'])) {
 		<div class="d-flex flex-column main-content-wrap"> <!-- header/contenido wrap -->
 			
 			<?php include "modulos/header.php"; ?> <!-- header top bar -->
-
 
 
 			<div class="container-fluid py-4 h-100 main-content carrera-view"> <!-- contenido principal -->
@@ -24,6 +28,7 @@ if (isset($_SESSION['datosUsuario'])) {
 						Nuevo <span class="fa fa-plus-circle ml-2"></span>
 					</span>
 				</div>
+
 
 				<div class="">
 					<hr>

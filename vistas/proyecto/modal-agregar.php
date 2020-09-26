@@ -17,6 +17,7 @@
                 
                 <div class="row">
                     <!-- Especialidad -->
+                    <!-- <input type="text" id="id_usuario" name="id_usuario" value="<?php //echo $idUsu ?>"> -->
                     <div class="col-md-6">
                         <label class="mt-2">Título</label>
                         <input type="text" class="form-control" id="titulo" name="titulo" required="">
@@ -24,10 +25,6 @@
                     <div class="col-md-6">
                         <label class="mt-2">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" required="">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="mt-2">Nodo</label>
-                        <input type="text" name="nodo" id="nodo" class="form-control"  required="">
                     </div>
                     <div class="col-md-6">
                         <label class="mt-2">Área Aplicación</label>
@@ -39,7 +36,7 @@
                             $c        = new Conexion();
                             $conexion =$c->conectar();
                             $sql = "SELECT est.id_estudiante, 
-                                           est.nombre 
+                                           usu.nombre 
                                       FROM t_usuario as usu 
                                 INNER JOIN t_estudiante as est on usu.id_usuario = est.id_usuario";
                             $query = Conexion::conectar()->prepare($sql);
@@ -50,6 +47,29 @@
                         <select class="form-control" id="id_estudiante" name="id_estudiante"
                                     required="">
                             <option value="">Selecciona un Estudiante</option>
+                            <?php  ?>
+                            <?php foreach ($datos as $key => $value) : ?>
+                                <option value="<?php echo $value[0] ?>"><?php echo $value[1]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <?php 
+                            require_once "../clases/Conexion.php"; 
+                            $c        = new Conexion();
+                            $conexion =$c->conectar();
+                            $sql = "SELECT asesor.id_asesor, 
+                                           usu.nombre 
+                                      FROM t_usuario as usu 
+                                INNER JOIN t_asesor as asesor on usu.id_usuario = asesor.id_usuario";
+                            $query = Conexion::conectar()->prepare($sql);
+                            $query->execute();
+                            $datos = $query->fetchAll();
+                        ?>
+                        <label class="mt-2">Asesor</label>
+                        <select class="form-control" id="id_asesor" name="id_asesor"
+                                    required="">
+                            <option value="">Selecciona un Asesor</option>
                             <?php  ?>
                             <?php foreach ($datos as $key => $value) : ?>
                                 <option value="<?php echo $value[0] ?>"><?php echo $value[1]; ?></option>

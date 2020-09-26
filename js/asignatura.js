@@ -170,15 +170,13 @@ function obtenerDatosArea(id) {
 }
 
 
-
-
 //estudiante
-
-
-function mostrarDatosEstudiante() {
+id = $('#idAsig').val();
+function mostrarDatosEstudiante(id) {
     //carga con datatables
     $.ajax({
         type:"POST",
+        data:"id=" + id,
         url:"../procesos/asignatura/mostrarDatosEstudiante.php",
         success: function(r){
             $('#tablaCargaEstudiante').html(r);
@@ -199,7 +197,7 @@ function mostrarDatosEstudiante() {
         }
     });
 }
-mostrarDatosEstudiante(); //cargaDatos
+mostrarDatosEstudiante(id); //cargaDatos
 
 function obtenerDatosEstudiante(id) {
     $.ajax({
@@ -226,7 +224,7 @@ function actualizarDatosEstudiante() {
         success:function(r){
             //alert(r);
             if(r==1){
-                mostrarDatosEstudiante();
+                mostrarDatosEstudiante(id);
                 swal("!Guardado con exito¡",":D","success");
             } else if (r==2) {
                 swal("!La clave ya existe¡",":0","warning");
@@ -248,7 +246,7 @@ function insertarEstudiante() {
             //alert(r);
             if(r==1){
                 $('#frmNuevaEstudiante')[0].reset();
-                mostrarDatosEstudiante();
+                mostrarDatosEstudiante(id);
                 swal("!Guardado con exito¡",":D","success");
             } else if (r==2) {
                 swal("!El estudiante ya se encuentra registrado¡",":0","warning");
@@ -277,7 +275,7 @@ function eliminarEstudiante(id) {
             success:function(r){
                 alert(r);
                 if(r==1){
-                    mostrarDatosEstudiante();
+                    mostrarDatosEstudiante(id);
                     swal("!Eliminado con exito¡",":D","info");
                 } else{
                     swal("!Error¡",":(","error");

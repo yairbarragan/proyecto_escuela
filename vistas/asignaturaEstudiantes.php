@@ -17,6 +17,7 @@ if (isset($_SESSION['datosUsuario'])) {
 				<br>
 				<br>
 				
+				<input type="text" id="idAsig" name="idAsig" value="<?php echo $_GET['id']; ?>" hidden="">
 				<div class="d-flex flex-column align-items-center align-items-md-start">
 					<p class="titulo"><b>ADMINISTRADOR ASIGNATURA ESTUDIANTES</b></p>
 					<span class="btn btn-primary" data-toggle="modal" data-target="#agregarEstudiante" data-backdrop="static">
@@ -38,6 +39,7 @@ if (isset($_SESSION['datosUsuario'])) {
 
 	</div>
 	<!-- MODALES -->
+
 		<?php include "asignatura/modal-agregar-estudiante.php"; ?>
 		<?php include "asignatura/modal-actualizar-estudiante.php"; ?>
 	<!-- END MODALES -->

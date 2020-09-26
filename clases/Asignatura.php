@@ -250,7 +250,7 @@ class Asignatura extends Conexion {
 	}
 
 	//estudiantes
-	public function mostrarDatosEstudiante() {
+	public function mostrarDatosEstudiante($id_asignatura) {
 		$sql = "SELECT est.id_estudiante,
 					   usu.nombre,
 					   est.no_control,
@@ -259,7 +259,7 @@ class Asignatura extends Conexion {
 			INNER JOIN t_usuario as usu on est.id_usuario = usu.id_usuario
 			INNER JOIN t_asignatura_estudiante as asiEst 
 					ON est.id_estudiante = asiEst.id_estudiante
-				     ";
+				   AND asiEst.id_asignatura = '$id_asignatura'";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
 		return $query->fetchAll();

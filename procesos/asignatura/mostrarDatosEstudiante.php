@@ -1,7 +1,8 @@
 <?php 
 require_once "../../clases/Asignatura.php";
 $obj   = new Asignatura(); //creo mi objeto
-$datos = $obj->mostrarDatosEstudiante(); //creo mi nueva instancia
+$id = $_POST['id'];
+$datos = $obj->mostrarDatosEstudiante($id); //creo mi nueva instancia
 
 $tabla = '<table id="iddatatableEstudiante" class="table-striped table-bordered
 		dt-responsive nowrap" style="width:100%">
