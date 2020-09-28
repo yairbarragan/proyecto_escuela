@@ -17,12 +17,9 @@ if (isset($_SESSION['datosUsuario'])) {
 				<?php include "modulos/breadcrum.php"; ?> <!-- breadcrum -->
 				<br>
 				<br>
-				
+				<input type="text" id="idComp" name="idComp" value="<?php echo $_GET['id']; ?>" hidden="">
 				<div class="d-flex flex-column align-items-center align-items-md-start">
 					<p class="titulo"><b>ADMINISTRADOR COMPETENCIAS ENTREGABLE</b></p>
-					<span class="btn btn-primary" data-toggle="modal" data-target="#agregarNuevo" data-backdrop="static">
-						Nuevo <span class="fa fa-plus-circle ml-2"></span>
-					</span>
 				</div>
 
 				<div class="">
@@ -39,8 +36,9 @@ if (isset($_SESSION['datosUsuario'])) {
 
 	</div>
 	<!-- MODALES -->
-		<?php include "competencia/modal-agregar-entregable.php"; ?>
 		<?php include "competencia/modal-actualizar-entregable.php"; ?>
+		<?php include "competencia/modal-evidencia.php"; ?>
+		<?php include "competencia/modal-actividadea.php"; ?>
 	<!-- END MODALES -->
 
 

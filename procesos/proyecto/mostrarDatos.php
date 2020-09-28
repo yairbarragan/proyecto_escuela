@@ -1,6 +1,6 @@
 <?php 
-	require_once "../../clases/Proyecto.php";
-	$obj   = new Proyecto(); //creo mi objeto
+require_once "../../clases/Proyecto.php";
+$obj   = new Proyecto(); //creo mi objeto
 $datos = $obj->mostrarDatos(); //creo mi nueva instancia
 
 $tabla = '<table id="iddatatable" class="table-striped table-bordered
@@ -14,6 +14,7 @@ $tabla = '<table id="iddatatable" class="table-striped table-bordered
                 <td>Asesor</td>
                 <td>Estudiante</td>
                 <td>Agregar Materias</td>
+                <td>Agregar Archivo</td>
 				<td style="max-width: 64px;">Opciones</td>
 			</tr>
 		</thead>
@@ -30,7 +31,14 @@ foreach ($datos as $key => $value) {
                 <td>'.$obj->nombreAsesor($value['id_proyecto']).'</td>
                 <td>'.$obj->nombreEstudiante($value['id_proyecto']).'</td>
                 <td class="text-center">
-                <a href="proyectoMaterias.php" class="btn btn-info btn-sm fas fa-plus"></a>
+                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#agregarMateria" data-backdrop="static" id="editar" onclick="mostrarDatosMaterias('.$value['id_proyecto'].')">
+                        <span class="fas fa-plus"></span>
+                    </span>
+                </td>
+                <td class="text-center">
+                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#agregarArchivo" data-backdrop="static" id="editar" onclick="idProyectoArchivo('.$value['id_proyecto'].')">
+                        <span class="fas fa-plus"></span>
+                    </span>
                 </td>
                 <td class="text-center">
 

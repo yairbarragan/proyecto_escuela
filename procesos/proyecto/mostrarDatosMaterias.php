@@ -1,16 +1,17 @@
 <?php 
 require_once "../../clases/Proyecto.php";
 $obj   = new Proyecto(); //creo mi objeto
-$datos = $obj->mostrarDatosMaterias(); //creo mi nueva instancia
+$id = $_POST['id'];
+$datos = $obj->mostrarDatosMaterias($id); //creo mi nueva instancia
 
-$tabla = '<table id="iddatatableMaterias" class="table-striped table-bordered
+$tabla = '<table id="iddatatableMateria" class="table-striped table-bordered
 		dt-responsive nowrap" style="width:100%">
         <thead class="head-tabla">
 			<tr class="thead">
 				<td style="max-width: 28px;">No.</td>
 				<td>Nombre</td>
                 <td>Clave</td>
-				<td style="max-width: 64px;">Opciones</td>
+				<td style="max-width: 64px;">Eliminar</td>
 			</tr>
 		</thead>
 		<tbody class="body-tabla">';
@@ -28,7 +29,7 @@ foreach ($datos as $key => $value) {
                     <!-- botones mandan por medio de onclick a mis funciones en mysite.js -->
 
                     <!-- Eliminar -->
-                    <span class="btn btn-danger btn-sm ml-2" id="eliminar" onclick="eliminarDatos('.$value['id_materia'].')">
+                    <span class="btn btn-danger btn-sm ml-2" id="eliminar" onclick="eliminarDatosMateria('.$value['id_asignatura'].')">
                         <span class="far fa-trash-alt"></span>
                     </span>
                 </td>

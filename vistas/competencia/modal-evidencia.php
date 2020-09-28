@@ -1,5 +1,5 @@
 <!-- MODAL AGREGAR NUEVO -->
-<div class="modal fade" id="agregarEvidencia" tabindex="-1">
+<div class="modal fade" id="actualizarEvidencia" tabindex="-1">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
@@ -20,24 +20,23 @@
                     
                     
                 <div class="col-md-12">
-                    <form id="frmEvi" method="POST" onsubmit="return insertarEvidencia()">
-                        <input type="text" name="id_entregable" id="id_entregable" placeholder="id_entregable">
-                        <input type="text" name="id_actividadea" id="id_actividadea" placeholder="id_actividadea">
-                       
+                    <form id="frmEvi" method="POST" onsubmit="return actualizarDatosEvidencia()">
+                        <input type="text" name="id_entregableE" id="id_entregableE" placeholder="id_entregable" hidden="">
+
                         <div class="d_flex">
-                            <p>Evidencia</p>
+                            <p><b>EVIDENCIA</b></p>
                             <div>
                                 <label class="mt-2">Material URL</label>
                                 <input type="text" class="form-control" id="url" name="url" required="">
                             </div>
                             <div>
                                 <label class="mt-2">Descripción</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" required="">
+                                <input type="text" class="form-control" id="descripcionE" name="descripcionE" required="">
                             </div>       
                         </div>
 
                         <div class="d_flex mt-4">
-                            <p>Desempeño </p>
+                            <p><b>DESEMPEÑO EVIDENCIA</b></p>
                             <div>
                                 <label class="mt-2">Puntos</label>
                                 <input type="text" class="form-control" id="puntos" name="puntos" required="">
@@ -47,8 +46,11 @@
                                 <input type="text" class="form-control" id="descripcionD" name="descripcionD" required="">
                             </div>       
                         </div>
-                        <button id="btnAgregarEvidencia" class="btn btn-primary">
+                        <button id="btnAgregarEvidencia" class="btn btn-primary mt-4">
                             GUARDAR
+                        </button>
+                        <button type="button" class="btn btn-danger ml-2 mt-4" data-dismiss="modal">
+                            CANCELAR
                         </button>
                     </form>
                 </div>

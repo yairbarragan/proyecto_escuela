@@ -46,6 +46,8 @@ if (isset($_SESSION['datosUsuario'])) {
 	<!-- MODALES -->
 		<?php include "proyecto/modal-agregar.php"; ?>
 		<?php include "proyecto/modal-actualizar.php"; ?>
+		<?php include "proyecto/modal-agregar-materias.php"; ?>
+		<?php include "proyecto/modal-agregar-archivo.php"; ?>
 	<!-- END MODALES -->
 
 
