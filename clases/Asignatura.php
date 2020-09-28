@@ -282,7 +282,7 @@ class Asignatura extends Conexion {
                  WHERE id_estudiante=:id_estudiante";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->bindParam(":id_estudiante", $datos['id_estudiante'],PDO::PARAM_INT);
-		$query->bindParam(":calif", $datos['calif'],PDO::PARAM_STR);
+		$query->bindParam(":calif", $datos['calificacion'],PDO::PARAM_INT);
 		return $query->execute();
 		$query->close();
 	}
@@ -295,8 +295,9 @@ class Asignatura extends Conexion {
 		return $query->execute();
 		$query->close();
 	}
-	public function existeEstudiante($id_estudiante) {
-	    $sql="SELECT * from t_asignatura_estudiante where id_estudiante='$id_estudiante'";
+	public function existeEstudiante($id_estudiante,$id_asignatura) {
+	    $sql="SELECT * from t_asignatura_estudiante 
+	    			  where id_estudiante='$id_estudiante' and id_asignatura='$id_asignatura'";
 	    $query = Conexion::conectar()->prepare($sql);
 	    $query->execute();
 	    $cuenta=$query->rowCount();
@@ -307,10 +308,12 @@ class Asignatura extends Conexion {
 	    }
 	    $query->close();
 	}
-	public function eliminarEstudiante($id_estudiante) {
-	    $sql = "DELETE FROM t_asignatura_estudiante where id_estudiante=:id_estudiante";
+	public function eliminarEstudiante($id_estudiante,$id_asignatura) {
+	    $sql = "DELETE FROM t_asignatura_estudiante 
+	    	          where id_estudiante=:id_estudiante and id_asignatura=:id_asignatura";
 	    $query = Conexion::conectar()->prepare($sql);
 	    $query->bindParam(":id_estudiante", $id_estudiante, PDO::PARAM_INT);
+	    $query->bindParam(":id_asignatura", $id_asignatura, PDO::PARAM_INT);
 	    return $query->execute();
 	    $query->close();
 	}

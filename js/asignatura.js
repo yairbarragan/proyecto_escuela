@@ -259,6 +259,7 @@ function insertarEstudiante() {
 }
 
 function eliminarEstudiante(id) {
+    idAsig = $('#idAsig').val();
     swal({
       title: "¿Seguro de eliminar?",
       text: "!Una vez eliminado no podra recuperarse¡",
@@ -270,10 +271,10 @@ function eliminarEstudiante(id) {
       if (willDelete) {
         $.ajax({
             type:"POST",
-            data:"id=" + id,
+            data:'&id=' + id + '&idAsig=' + idAsig,
             url:"../procesos/asignatura/eliminarEstudiante.php",
             success:function(r){
-                alert(r);
+                //alert(r);
                 if(r==1){
                     mostrarDatosEstudiante(id);
                     swal("!Eliminado con exito¡",":D","info");

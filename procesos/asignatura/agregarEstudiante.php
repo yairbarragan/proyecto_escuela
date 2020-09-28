@@ -8,7 +8,7 @@ $datos = array(
 );
 //print_r($datos);
 //echo $obj->insertarEstudiante($datos);
-if ($obj->existeEstudiante($datos['id_estudiante'])) {
+if ($obj->existeEstudiante($datos['id_estudiante'],$datos['id_asignatura'])) {
 	echo 2;
 } else {
 	echo $obj->insertarEstudiante($datos);

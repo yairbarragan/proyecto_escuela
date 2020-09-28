@@ -1,5 +1,6 @@
 <?php
 	$rol = $_SESSION['datosUsuario']['id'];
+	$idRol = $_SESSION['datosUsuario']['idRol'];
 ?>
 <div class="menu-wrap container">
 	<p class="mt-3" style="color: #2e2e2e;"><b>Menú</b></p>
@@ -11,6 +12,7 @@
 				<span class="sr-only">(current)</span>
 			</a>
 		</li>
+		<?php if ($idRol == 1) { ?>
 		<li class="nav-item">
 			<a class="nav-link" href="carrera.php"> <span class="fas fa-graduation-cap"></span> Carrera</a>
 		</li>
@@ -29,5 +31,11 @@
 		<li class="nav-item">
 			<a class="nav-link" href="proyecto.php"> <span class="fas fa-folder-open"></span> Proyecto</a>
 		</li>
+		<?php } ?>
+		<?php if ($idRol == 3): ?>
+			<li class="nav-item">
+				<a class="nav-link" href="estudiante.php"> <span class="fas fa-user"></span> Estudiante</a>
+			</li>
+		<?php endif ?>
 	</ul>
 </div>
