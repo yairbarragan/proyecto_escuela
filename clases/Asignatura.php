@@ -36,7 +36,7 @@ class Asignatura extends Conexion {
 	      $con = Conexion::conectar();
 	      $query = $con->prepare($sql);
 	      $query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
-	      $query->bindParam(":clave", $datos['clave'],PDO::PARAM_INT);
+	      $query->bindParam(":clave", $datos['clave'],PDO::PARAM_STR);
 	      $query->bindParam(":creditos", $datos['creditos'],PDO::PARAM_INT);
 	      $query->execute();
 	      return $result = $con->lastInsertId();
@@ -106,7 +106,7 @@ class Asignatura extends Conexion {
 				$query->bindParam(":id_asignatura", $datos['id_asignatura'],PDO::PARAM_INT);
 				$query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
 				$query->bindParam(":creditos", $datos['creditos'],PDO::PARAM_INT);
-				$query->bindParam(":clave", $datos['clave'],PDO::PARAM_INT);
+				$query->bindParam(":clave", $datos['clave'],PDO::PARAM_STR);
 				return $query->execute();
   		}
 		
@@ -241,7 +241,7 @@ class Asignatura extends Conexion {
 	                   nodo_problema= :nodo_problema
                  WHERE id_asignatura=:id_asignatura";
 		$query = Conexion::conectar()->prepare($sql);
-		$query->bindParam(":nodo_problema", $datos['nodo_problema'],PDO::PARAM_INT);
+		$query->bindParam(":nodo_problema", $datos['nodo_problema'],PDO::PARAM_STR);
 		$query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
 		$query->bindParam(":aportacion", $datos['aportacion'],PDO::PARAM_STR);
 		$query->bindParam(":id_asignatura", $datos['id_asignatura'],PDO::PARAM_INT);
@@ -254,7 +254,8 @@ class Asignatura extends Conexion {
 		$sql = "SELECT est.id_estudiante,
 					   usu.nombre,
 					   est.no_control,
-					   asiEst.calif
+					   asiEst.calif,
+					   asiEst.id_asignatura
 				  FROM t_estudiante as est
 			INNER JOIN t_usuario as usu on est.id_usuario = usu.id_usuario
 			INNER JOIN t_asignatura_estudiante as asiEst 
@@ -265,13 +266,14 @@ class Asignatura extends Conexion {
 		return $query->fetchAll();
 		$query->close();
 	}
-	public function obtenerDatosEstudiante($id) {
+	public function obtenerDatosEstudiante($id,$idA) {
 	    $sql = "SELECT 	asigEst.calif,
 	   				   	asigEst.id_estudiante
   				  FROM 	t_asignatura_estudiante as asigEst
-				 WHERE 	asigEst.id_estudiante = :id";
+				 WHERE 	asigEst.id_estudiante = :id and asigEst.id_asignatura=:idA";
 	    $query = Conexion::conectar()->prepare($sql);
 	    $query->bindParam(":id", $id,PDO::PARAM_INT);
+	    $query->bindParam(":idA", $idA,PDO::PARAM_INT);
 	    $query->execute();
 	    return $result = $query->fetch();
 	    $query->close();
@@ -279,10 +281,11 @@ class Asignatura extends Conexion {
   	public function actualizarDatosEstudiante($datos) {
 		$sql = "UPDATE t_asignatura_estudiante 
 	               SET calif= :calif
-                 WHERE id_estudiante=:id_estudiante";
+                 WHERE id_estudiante=:id_estudiante and id_asignatura=:id_asignatura";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->bindParam(":id_estudiante", $datos['id_estudiante'],PDO::PARAM_INT);
 		$query->bindParam(":calif", $datos['calificacion'],PDO::PARAM_INT);
+		$query->bindParam(":id_asignatura", $datos['id_asignatura'],PDO::PARAM_INT);
 		return $query->execute();
 		$query->close();
 	}

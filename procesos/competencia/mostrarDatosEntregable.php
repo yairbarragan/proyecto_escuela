@@ -15,7 +15,7 @@ $tabla = '<table id="iddatatableEntregable" class="table-striped table-bordered
 				<td>Descripción</td>
                 <td>Actividad EA</td>
                 <td>Evidencia</td>
-				<td style="max-width: 64px;">Opciones</td>
+				<td>Actuailar Entregable</td>
 			</tr>
 		</thead>
 		<tbody class="body-tabla">';

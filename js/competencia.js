@@ -182,7 +182,7 @@ function actualizarDatosEntregable() {
         data:datos,
         url:"../procesos/competencia/actualizarDatosEntregable.php",
         success:function(r){
-            alert(r);
+            //alert(r);
             if(r==1){
                 mostrarDatosEntregable(idC);
                 swal("!Guardado con exito¡",":D","success");

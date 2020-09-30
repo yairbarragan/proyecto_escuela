@@ -199,10 +199,10 @@ function mostrarDatosEstudiante(id) {
 }
 mostrarDatosEstudiante(id); //cargaDatos
 
-function obtenerDatosEstudiante(id) {
+function obtenerDatosEstudiante(id,idA) {
     $.ajax({
         type:"POST",
-        data:"id=" + id,
+        data:'&idA=' + idA + '&id=' + id,
         url:"../procesos/asignatura/obtenerDatosEstudiante.php",
         success:function(r){
             //alert(r);
@@ -222,7 +222,7 @@ function actualizarDatosEstudiante() {
         data:datos,
         url:"../procesos/asignatura/actualizarDatosEstudiante.php",
         success:function(r){
-            //alert(r);
+            alert(r);
             if(r==1){
                 mostrarDatosEstudiante(id);
                 swal("!Guardado con exito¡",":D","success");
@@ -276,7 +276,7 @@ function eliminarEstudiante(id) {
             success:function(r){
                 //alert(r);
                 if(r==1){
-                    mostrarDatosEstudiante(id);
+                    mostrarDatosEstudiante(idAsig);
                     swal("!Eliminado con exito¡",":D","info");
                 } else{
                     swal("!Error¡",":(","error");

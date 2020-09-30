@@ -30,8 +30,8 @@ foreach ($datos as $key => $value) {
 
                     <!-- botones mandan por medio de onclick a mis funciones en mysite.js -->
                     <!-- Editar -->
-                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarRegistroEstudiante" data-backdrop="static" id="editar" onclick="obtenerDatosEstudiante('.$value['id_estudiante'].')">
-                        <span class="fas fa-edit"></span>
+                    <span class="btn btn-info btn-sm" data-toggle="modal" data-target="#editarRegistroEstudiante" data-backdrop="static" id="editar" onclick="obtenerDatosEstudiante('.$value['id_estudiante'].','.$value['id_asignatura'].')">
+                        <span class="fas fa-edit"></span>  
                     </span>
 
                     <!-- Eliminar -->

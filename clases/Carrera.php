@@ -23,7 +23,7 @@ class Carrera extends Conexion {
 	      $con = Conexion::conectar();
 	      $query = $con->prepare($sql);
 	      $query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
-	      $query->bindParam(":clave", $datos['clave'],PDO::PARAM_INT);
+	      $query->bindParam(":clave", $datos['clave'],PDO::PARAM_STR);
 	      return $query->execute();
 	      $query->close();
 	    }
@@ -44,7 +44,7 @@ class Carrera extends Conexion {
 		$query = Conexion::conectar()->prepare($sql);
 		$query->bindParam(":id_carrera", $datos['id_carrera'],PDO::PARAM_INT);
 		$query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
-		$query->bindParam(":clave", $datos['clave'],PDO::PARAM_INT);
+		$query->bindParam(":clave", $datos['clave'],PDO::PARAM_STR);
 		return $query->execute();
 		$query->close();
   	}

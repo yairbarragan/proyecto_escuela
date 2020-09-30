@@ -1,1 +1,11 @@
-    //<td>'.$obj->nombreResponsable($value['id_usuario'])[0].'</td>
+vista formulario
+	js -jquery javascript envia la informacion -- mostrar ventana con error o acierto
+	
+controlador son los datos --> procesos manda modelo, recibe la respuesta y regresa a js
+
+
+modelo enviar a base de datos --> clases manda a base de datos recibe respuesta y regresa a controlador 
+
+
+
+vistas --> js --> procesos --> clases --> procesos --> js --> vistas

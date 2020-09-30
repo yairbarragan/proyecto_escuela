@@ -2,7 +2,7 @@
 
 require_once "Conexion.php";
 
-class Estudiante extends Conexion {
+class Asesor extends Conexion {
 
 	public function mostrarDatos($idUsuario) {
 		$sql = "SELECT usuario.nombre,
@@ -14,36 +14,66 @@ class Estudiante extends Conexion {
 		return $query->fetchAll();
 		$query->close();
 	}
-	public function obtenerIdEstudiante($idUsuario) {
-		$sql = "SELECT id_estudiante
-				  from t_estudiante where id_usuario = '$idUsuario'";
+	public function obtenerIdAsesor($idUsuario) {
+		$sql = "SELECT id_asesor
+				  from t_asesor where id_usuario = '$idUsuario'";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
 		return $query->fetch()[0];
 		$query->close();
 	}
-	public function obtenerNombreAsignatura($idEstudiante) {
-		$sql = "SELECT asi.nombre,
-					   asiEst.calif
-				  from t_asignatura as asi
- 			inner join t_asignatura_estudiante as asiEst on asi.id_asignatura = asiest.id_asignatura
-				   and id_estudiante = '$idEstudiante'";
+	public function obtenerNombreCarrera($idAsesor) {
+		$sql = "SELECT carrera.nombre,
+					   carrera.clave
+				  from t_cat_carrera as carrera
+ 			inner join t_asesor as asesor on carrera.id_carrera = asesor.id_carrera
+				   and id_asesor = '$idAsesor'";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
 		return $query->fetchALL();
 		$query->close();
 	}
-	public function mostrarDatosProyecto($idEstudiante) {
+	public function mostrarDatosProyecto($idAsesor) {
 		$sql = "SELECT pro.titulo, 
 					   pro.nombre,
 				       pro.area_aplicacion,
 				       pro.id_proyecto,
 				       usuario.nombre as nom
 				  from t_proyecto as pro 
-			inner join t_proyecto_estudiante as proEst on pro.id_proyecto = proEst.id_proyecto
 			inner join t_asesor as asesor on pro.id_asesor = asesor.id_asesor
 			inner join t_usuario as usuario on asesor.id_usuario = usuario.id_usuario
-				   and proEst.id_estudiante = '$idEstudiante'";
+				   and asesor.id_asesor = '$idAsesor'";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->execute();
+		return $query->fetchALL();
+		$query->close();
+	}
+	public function obtenerDatosEstudiante($idProyecto) {
+		$sql = "SELECT usuario.nombre as nom
+				  from t_proyecto as pro 
+			inner join t_proyecto_estudiante as proEst on pro.id_proyecto = proEst.id_proyecto
+            inner join t_estudiante as est on proEst.id_estudiante = est.id_estudiante
+			inner join t_usuario as usuario on est.id_usuario = usuario.id_usuario
+				   and pro.id_proyecto = '$idProyecto'";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->execute();
+		return $query->fetch()[0];
+		$query->close();
+	}
+
+	public function obtenerIdProyecto($idAsesor) {
+		$sql = "SELECT id_proyecto
+				  from t_proyecto where id_asesor = '$idAsesor'";
+		$query = Conexion::conectar()->prepare($sql);
+		$query->execute();
+		return $query->fetch()[0];
+		$query->close();
+	}
+	public function mostrarMateriasProyecto($idProyecto) {
+		$sql = "SELECT asi.nombre,asi.clave 
+				  from t_asignatura as asi  
+			inner join t_proyecto_asignatura as proAsi on asi.id_asignatura = proAsi.id_asignatura
+				   and id_proyecto='$idProyecto'";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
 		return $query->fetchALL();

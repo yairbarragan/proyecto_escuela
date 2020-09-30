@@ -37,5 +37,10 @@
 				<a class="nav-link" href="estudiante.php"> <span class="fas fa-user"></span> Estudiante</a>
 			</li>
 		<?php endif ?>
+		<?php if ($idRol == 2): ?>
+			<li class="nav-item">
+				<a class="nav-link" href="asesor.php"> <span class="fas fa-user"></span> Asesor</a>
+			</li>
+		<?php endif ?>
 	</ul>
 </div>

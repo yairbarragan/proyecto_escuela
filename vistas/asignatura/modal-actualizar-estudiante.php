@@ -16,7 +16,8 @@
                 onsubmit="return actualizarDatosEstudiante()">
                 
                 <div class="row">
-                    <input type="text" id="id_estudianteU" name="id_estudianteU" placeholder="id_estudianteU" hidden="" >
+                    <input type="text" id="id_estudianteU" name="id_estudianteU" hidden="">
+                    <input type="text" id="idAsigE" name="idAsigE" value="<?php echo $_GET['id']; ?>" hidden="">
                     <!-- Especialidad -->
                     <div class="col-md-12">
                         <label class="mt-2">Calificación</label>
