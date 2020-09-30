@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 28-09-2020 a las 05:38:17
+-- Tiempo de generación: 30-09-2020 a las 00:59:24
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `t_archivos` (
   `nombre_original` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_archivos`),
   KEY `fk_archivo_proyecto_idx` (`id_proyecto`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `t_archivos_actividadea` (
   `id_entregable` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_archivos_actividadEA`),
   KEY `fk_archea_entr_idx` (`id_entregable`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -111,11 +111,11 @@ CREATE TABLE IF NOT EXISTS `t_area_aplicacion` (
   `id_area_aplicacion` int(11) NOT NULL AUTO_INCREMENT,
   `id_asignatura` int(11) DEFAULT NULL,
   `nombre` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `aportacion` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `nodo_problema` int(11) DEFAULT NULL,
+  `aportacion` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `nodo_problema` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_area_aplicacion`),
   KEY `fk_id_asignatura_idx` (`id_asignatura`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `t_asesor` (
   PRIMARY KEY (`id_asesor`),
   KEY `fk_id_usuario_idx` (`id_usuario`),
   KEY `fk_id_carrera_as_idx` (`id_carrera`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -146,9 +146,9 @@ CREATE TABLE IF NOT EXISTS `t_asignatura` (
   `id_asignatura` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `creditos` int(11) DEFAULT NULL,
-  `clave` int(11) DEFAULT NULL,
+  `clave` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_asignatura`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `t_asignatura_carrera` (
   PRIMARY KEY (`id_asignatura_carrera`),
   KEY `fk_asig_car_idx` (`id_carrera`),
   KEY `fk_asig_id_idx` (`id_asignatura`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `t_asignatura_competencia` (
   PRIMARY KEY (`id_asignatura_competencia`),
   KEY `fk_id_competencia_idx` (`id_competencia`),
   KEY `fk_id_asignatura_idx` (`id_asignatura`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -193,11 +193,11 @@ CREATE TABLE IF NOT EXISTS `t_asignatura_estudiante` (
   `id_asignatura_estudiante` int(11) NOT NULL AUTO_INCREMENT,
   `id_asignatura` int(11) DEFAULT NULL,
   `id_estudiante` int(11) DEFAULT NULL,
-  `calif` float DEFAULT NULL,
+  `calif` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_asignatura_estudiante`),
   KEY `fk_id_asignatura_idx` (`id_asignatura`),
   KEY `fk_id_estudiante_idx` (`id_estudiante`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `t_carrera_especialidad` (
   PRIMARY KEY (`id_carrera_especialidad`),
   KEY `fk_id_carrera_idx` (`id_carrera`),
   KEY `fk_id_especialidad_idx` (`id_especialidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -240,10 +240,10 @@ CREATE TABLE IF NOT EXISTS `t_carrera_especialidad` (
 DROP TABLE IF EXISTS `t_cat_carrera`;
 CREATE TABLE IF NOT EXISTS `t_cat_carrera` (
   `id_carrera` int(11) NOT NULL AUTO_INCREMENT,
-  `clave` int(11) DEFAULT NULL,
+  `clave` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `nombre` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_carrera`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `t_cat_especialidad` (
   `nombre` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `periodo_vigencia` date DEFAULT NULL,
   PRIMARY KEY (`id_especialidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -272,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `t_competencia` (
   `campo_desar_asig` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `campo_desar_proyint` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_competencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `t_desempeno` (
   `id_evidencia` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_desempeno`),
   KEY `fk_ent_des_idx` (`id_entregable`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `t_entregable` (
   `descripcion` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_entregable`),
   KEY `fk_entr_comp_idx` (`id_competencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `t_estudiante` (
   `periodo_ingreso` date DEFAULT NULL,
   PRIMARY KEY (`id_estudiante`),
   KEY `fk_id_usu_idx` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -338,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `t_evidencia` (
   `descripcion` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_evidencia`),
   KEY `fk_ent_evi_idx` (`id_entregable`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -355,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `t_proyecto` (
   `area_aplicacion` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_proyecto`),
   KEY `fk_asesor_pro_idx` (`id_asesor`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -371,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `t_proyecto_asignatura` (
   PRIMARY KEY (`id_proyecto_asignatura`),
   KEY `fk_asig_id_idx` (`id_asignatura`),
   KEY `fk_pro_id_idx` (`id_proyecto`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -387,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `t_proyecto_estudiante` (
   PRIMARY KEY (`id_proyecto_estudiante`),
   KEY `fk_id_est_pro_idx` (`id_estudiante`),
   KEY `fk_id_proy_idx` (`id_proyecto`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -428,7 +428,7 @@ CREATE TABLE IF NOT EXISTS `t_usuario` (
   `password` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `fk_rol_usuario_idx` (`id_rol_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `t_usuario`
