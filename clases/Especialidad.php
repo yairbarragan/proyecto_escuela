@@ -7,7 +7,8 @@ class Especialidad extends Conexion {
 	public function mostrarDatos() {
 		$sql = "SELECT especialidad.nombre,
 					   especialidad.id_especialidad,
-					   especialidad.periodo_vigencia
+					   especialidad.periodo_vigencia,
+					   especialidad.periodo_vigencia_dos
 				  FROM t_cat_especialidad as especialidad";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->execute();
@@ -26,12 +27,13 @@ class Especialidad extends Conexion {
 		$query->close();
 	}
 	public function insertarDatos($datos) {
-		$sql = "INSERT INTO t_cat_especialidad (nombre,periodo_vigencia)
-		  		   VALUES (:nombre,:periodo_vigencia)";
+		$sql = "INSERT INTO t_cat_especialidad (nombre,periodo_vigencia,periodo_vigencia_dos)
+		  		   VALUES (:nombre,:periodo_vigencia,:periodo_vigencia_dos)";
 		$con = Conexion::conectar();
 		$query = $con->prepare($sql);
 		$query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
 		$query->bindParam(":periodo_vigencia", $datos['periodo_vigencia'],PDO::PARAM_STR);
+		$query->bindParam(":periodo_vigencia_dos", $datos['periodo_vigencia_dos'],PDO::PARAM_STR);
 		$query->execute();
 		return $con->lastInsertId();
 		$query->close();
@@ -48,6 +50,7 @@ class Especialidad extends Conexion {
 	public function obtenerDatos($id) {
 	    $sql = "SELECT 	esp.nombre,
 	   				   	esp.periodo_vigencia,
+	   				   	esp.periodo_vigencia_dos,
        					esp.id_especialidad
   				  FROM 	t_cat_especialidad as esp
 				 WHERE 	esp.id_especialidad = :id";
@@ -70,12 +73,14 @@ class Especialidad extends Conexion {
   	public function actualizarDatosEspecialidad($datos) {
 		$sql = "UPDATE t_cat_especialidad 
 	               SET nombre= :nombre,
-                       periodo_vigencia= :periodo_vigencia
+                       periodo_vigencia= :periodo_vigencia,
+                       periodo_vigencia_dos= :periodo_vigencia_dos
                  WHERE id_especialidad=:id_especialidad";
 		$query = Conexion::conectar()->prepare($sql);
 		$query->bindParam(":id_especialidad", $datos['id_especialidad'],PDO::PARAM_INT);
 		$query->bindParam(":nombre", $datos['nombre'],PDO::PARAM_STR);
 		$query->bindParam(":periodo_vigencia", $datos['periodo_vigencia'],PDO::PARAM_STR);
+		$query->bindParam(":periodo_vigencia_dos", $datos['periodo_vigencia_dos'],PDO::PARAM_STR);
 		return $query->execute();
 		$query->close();
   	}

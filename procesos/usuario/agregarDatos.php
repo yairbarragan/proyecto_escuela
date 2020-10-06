@@ -7,19 +7,19 @@ $usuario = trim($_POST['usuario']);
 $usuario = preg_replace('/\s\s+/', ' ', $usuario);
 
 $datos = array(
-	'nombre'          => $_POST['nombre'],
-	'usuario'         => $usuario,
-	'email'           => $_POST['email'],
-	'password'        => $pass,
-	'id_rol_usuario'  => $_POST['id_rol_usuario'],
-	'no_empleado'     => $_POST['no_empleado'],
-	'grado_estudios'  => $_POST['grado_estudios'],
-	'id_carrera'      => $_POST['id_carrera'],
-	'no_control'      => $_POST['no_control'],
-	'genero'          => $_POST['genero'],
-	'periodo_ingreso' => $_POST['periodo_ingreso'],
+	'nombre'              => $_POST['nombre'],
+	'usuario'             => $usuario,
+	'email'               => $_POST['email'],
+	'password'            => $pass,
+	'id_rol_usuario'      => $_POST['id_rol_usuario'],
+	'no_empleado'         => $_POST['no_empleado'],
+	'grado_estudios'      => $_POST['grado_estudios'],
+	'id_carrera'          => $_POST['id_carrera'],
+	'no_control'          => $_POST['no_control'],
+	'genero'              => $_POST['genero'],
+	'periodo_ingreso'     => $_POST['periodo_ingreso'],
+	'periodo_ingreso_dos' => $_POST['periodo_ingreso_dos'],
 );
-
 $id_usuario = $obj->insertarDatosUsuario($datos);
 if ($id_usuario == 'existe') {
 	echo 2;
@@ -38,16 +38,12 @@ if ($id_usuario == 'existe') {
 				echo 0;
 			}
 		} else {
-			if ($_POST['periodo_ingreso'] == '') {
-				$fecha = null;
-			} else {
-				$fecha = $_POST['periodo_ingreso'];
-			}
 			$datos = array(
-				'id_usuario'      => $id_usuario,
-				'no_control'      => $_POST['no_control'],
-				'genero'          => $_POST['genero'],
-				'periodo_ingreso' => $fecha,
+				'id_usuario'          => $id_usuario,
+				'no_control'          => $_POST['no_control'],
+				'genero'              => $_POST['genero'],
+				'periodo_ingreso'     => $_POST['periodo_ingreso'],
+				'periodo_ingreso_dos' => $_POST['periodo_ingreso_dos'],
 			);
 			if ($obj->insertarDatosEstudiante($datos)) {
 				echo 1;

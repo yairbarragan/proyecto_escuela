@@ -99,11 +99,24 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Genero</label>
-                                        <input type="text" class="form-control estudiante-input" id="generoU" name="generoU" required="">
+                                        <div class="d-flex align-items-center mt-2">
+                                            <p>Masculino</p>
+                                            <input type="radio" class=" ml-2" id="masculinoU" 
+                                            name="generoU" value="masculino">
+                                            
+                                            <p class="ml-3">Femenino</p>
+                                            <input type="radio" class=" ml-2" id="femeninoU" 
+                                            name="generoU" value="femenino">
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="mt-2">Periodo Ingreso</label>
-                                        <input type="text" name="periodo_ingresoU" id="periodo_ingresoU" class="form-control estudiante-input" readonly="" required="">
+                                        
+                                        <div class="d-flex">
+                                            <input type="text" name="periodo_ingresoU" id="periodo_ingresoU" class="form-control calendario estudiante-input mr-2" readonly="" autocomplete="off">
+
+                                            <input type="text" name="periodo_ingreso_dosU" id="periodo_ingreso_dosU" class="form-control calendario estudiante-input" readonly="" autocomplete="off">    
+                                        </div>
                                     </div>
                                 </div>
                             </div>

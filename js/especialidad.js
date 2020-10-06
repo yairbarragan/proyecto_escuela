@@ -2,24 +2,29 @@ $(document).ready(function(){
 
 	var fechaA = new Date();
     var yyyy = fechaA.getFullYear();
-	$("#periodo_vigencia").datepicker({
+    $(".calendario").datepicker({
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
         changeMonth: true,
         changeYear: true,
         yearRange: '1900:' + yyyy,
-        dateFormat: "yy-mm-dd"
-    });
-
-    $('#periodo_vigenciaU').datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: '1900:' + yyyy,
-        dateFormat: "yy-mm-dd"
+        showButtonPanel: true,
+        dateFormat: 'MM yy',
+        onClose: function(dateText, inst) { 
+            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
     });
 
     $("#periodo_vigencia").keydown(function(e){
         e.preventDefault();
     });
     $("#periodo_vigenciaU").keydown(function(e){
+        e.preventDefault();
+    });
+    $("#periodo_vigencia_dos").keydown(function(e){
+        e.preventDefault();
+    });
+    $("#periodo_vigencia_dosU").keydown(function(e){
         e.preventDefault();
     });
 })
@@ -83,6 +88,7 @@ function obtenerDatos(id) {
             $('#id_especialidad').val(json['id_especialidad']);
             $('#nombreU').val(json['nombre']);
             $('#periodo_vigenciaU').val(json['periodo_vigencia']);
+            $('#periodo_vigencia_dosU').val(json['periodo_vigencia_dos']);
             
 
             $.ajax({

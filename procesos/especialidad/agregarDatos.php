@@ -2,8 +2,9 @@
 require_once "../../clases/Especialidad.php";
 $obj = new Especialidad(); //creo mi objeto
 $datos = array(
-	'nombre'           => $_POST['nombre'],
-	'periodo_vigencia' => $_POST['periodo_vigencia'],
+	'nombre'               => $_POST['nombre'],
+	'periodo_vigencia'     => $_POST['periodo_vigencia'],
+	'periodo_vigencia_dos' => $_POST['periodo_vigencia_dos'],
 );
 //print_r($datos);
 $respuesta = $obj->insertarDatos($datos);

@@ -46,16 +46,13 @@ if ($id_rol_bd == $id_rol and $id_rol == 2) {
 	//echo"actualizo usuario, elimino asesor inserto estudiante";
 	$respuesta = $obj->actualizarDatosUsuario($datos);
 	if ($respuesta > 0) {
-		if ($_POST['periodo_ingresoU'] == '') {
-			$fecha = null;
-		} else {
-		$fecha = $_POST['periodo_ingresoU'];
-		}
+		
 		$datos = array(
-		'id_usuario'      => $id_usuario,
-		'no_control'      => $_POST['no_controlU'],
-		'genero'          => $_POST['generoU'],
-		'periodo_ingreso' => $fecha,
+		'id_usuario'          => $id_usuario,
+		'no_control'          => $_POST['no_controlU'],
+		'genero'              => $_POST['generoU'],
+		'periodo_ingreso'     => $_POST['periodo_ingresoU'],
+		'periodo_ingreso_dos' => $_POST['periodo_ingreso_dosU'],
 		);
 		/**/
 		$id_asesor   = $obj->buscarIDAsesor($id_usuario);
@@ -111,16 +108,12 @@ if ($id_rol_bd == $id_rol and $id_rol == 2) {
 	//echo "actualizo usuario, actualizo estudiante";
 	$respuesta = $obj->actualizarDatosUsuario($datos);
 	if ($respuesta > 0) {
-		if ($_POST['periodo_ingresoU'] == '') {
-			$fecha = null;
-		} else {
-		$fecha = $_POST['periodo_ingresoU'];
-		}
 		$datos = array(
-		'id_usuario'      => $id_usuario,
-		'no_control'      => $_POST['no_controlU'],
-		'genero'          => $_POST['generoU'],
-		'periodo_ingreso' => $fecha,
+		'id_usuario'          => $id_usuario,
+		'no_control'          => $_POST['no_controlU'],
+		'genero'              => $_POST['generoU'],
+		'periodo_ingreso'     => $_POST['periodo_ingresoU'],
+		'periodo_ingreso_dos' => $_POST['periodo_ingreso_dosU'],
 		);
 		if ($obj->actualizarDatosEstudiante($datos)) {
 			echo 1;

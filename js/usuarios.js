@@ -2,25 +2,24 @@ $(document).ready(function(){
 
 	var fechaA = new Date();
     var yyyy = fechaA.getFullYear();
-	$("#periodo_ingreso").datepicker({
+	$(".calendario").datepicker({
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
         changeMonth: true,
         changeYear: true,
         yearRange: '1900:' + yyyy,
-        dateFormat: "yy-mm-dd"
-    });
-
-    $('#periodo_ingresoU').datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: '1900:' + yyyy,
-        dateFormat: "yy-mm-dd"
+        showButtonPanel: true,
+        dateFormat: 'MM yy',
+        onClose: function(dateText, inst) { 
+            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
     });
 
 	$('#asesor').hide();
 	$('#estudiante').hide();
     $('.asesor-input').removeAttr('required');
     $('.estudiante-input').removeAttr('required');
-    $('#id_carreraU').prop('required',true);
+    //$('#id_carreraU').prop('required',true);
 
 	$($('#id_rol_usuario')).change(function(){
 		if ($('#id_rol_usuario').val() == 2) {
@@ -150,8 +149,17 @@ function obtenerDatos(id) {
             $('#id_carreraU').val(json['id_carrera']);
             /*estudiante*/
             $('#no_controlU').val(json['no_control']);
-            $('#generoU').val(json['genero']);
+            //$('#generoU').val(json['genero']);
+            genero = json['genero'];
+            if (genero == 'masculino') {
+                $('#masculinoU').prop('checked',true);    
+            } else if (genero == 'femenino'){
+                $('#femeninoU').prop('checked',true);    
+            } else {
+                $('#masculinoU').prop('checked',true);    
+            }
             $('#periodo_ingresoU').val(json['periodo_ingreso']);
+            $('#periodo_ingreso_dosU').val(json['periodo_ingreso_dos']);
         }
     });
 

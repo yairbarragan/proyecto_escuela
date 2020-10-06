@@ -23,7 +23,12 @@
                     </div>
                     <div class="col-md-6">
                         <label class="mt-2">Periodo Vigencia</label>
-                        <input type="text" name="periodo_vigencia" id="periodo_vigencia" class="form-control" required="">
+                        <div class="d-flex">
+                            <input type="text" name="periodo_vigencia" id="periodo_vigencia" class="form-control calendario mr-2" required="" autocomplete="off">
+
+                            <input type="text" name="periodo_vigencia_dos" id="periodo_vigencia_dos" class="form-control calendario" required="" autocomplete="off">    
+                        </div>
+                        
                     </div>
                     <div class="col-md-12">
                         <?php 

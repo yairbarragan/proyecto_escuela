@@ -90,14 +90,16 @@ class Usuario extends Conexion {
       $sql = "INSERT INTO t_estudiante (id_usuario,
                               no_control,
                               genero,
-                              periodo_ingreso)
-          		   VALUES (:id_usuario,:no_control,:genero,:periodo_ingreso)";
+                              periodo_ingreso,
+                              periodo_ingreso_dos)
+          		   VALUES (:id_usuario,:no_control,:genero,:periodo_ingreso,:periodo_ingreso_dos)";
       $con = Conexion::conectar();
       $query = $con->prepare($sql);
       $query->bindParam(":id_usuario", $datos['id_usuario'],PDO::PARAM_INT);
       $query->bindParam(":no_control", $datos['no_control'],PDO::PARAM_INT);
       $query->bindParam(":genero", $datos['genero'],PDO::PARAM_STR);
       $query->bindParam(":periodo_ingreso", $datos['periodo_ingreso'],PDO::PARAM_STR);
+      $query->bindParam(":periodo_ingreso_dos", $datos['periodo_ingreso_dos'],PDO::PARAM_STR);
       return $query->execute();
       $query->close();
     }
@@ -135,7 +137,8 @@ class Usuario extends Conexion {
 	    			   rol.id_rol_usuario,
 	    			   estudiante.no_control,
 	    			   estudiante.genero,
-	    			   estudiante.periodo_ingreso
+	    			   estudiante.periodo_ingreso,
+	    			   estudiante.periodo_ingreso_dos
 	              FROM t_usuario as usuario
 	        INNER JOIN t_rol_usuario as rol on usuario.id_rol_usuario = rol.id_rol_usuario
 	        INNER JOIN t_estudiante as estudiante on estudiante.id_usuario = usuario.id_usuario
@@ -202,15 +205,17 @@ class Usuario extends Conexion {
   	}
   	public function actualizarDatosEstudiante($datos) {
 		$sql = "UPDATE t_estudiante SET no_control= :no_control,
-	                            	 genero= :genero,
-	                            	 periodo_ingreso= :periodo_ingreso
-	           WHERE id_usuario=:id_usuario";
+	                            	 	genero= :genero,
+	                            	 	periodo_ingreso= :periodo_ingreso,
+	                            	 	periodo_ingreso_dos= :periodo_ingreso_dos
+	           					  WHERE id_usuario=:id_usuario";
 
 		$query = Conexion::conectar()->prepare($sql);
 		$query->bindParam(":id_usuario", $datos['id_usuario'],PDO::PARAM_INT);
 		$query->bindParam(":no_control", $datos['no_control'],PDO::PARAM_INT);
 		$query->bindParam(":genero", $datos['genero'],PDO::PARAM_STR);
 		$query->bindParam(":periodo_ingreso", $datos['periodo_ingreso'],PDO::PARAM_STR);
+		$query->bindParam(":periodo_ingreso_dos", $datos['periodo_ingreso_dos'],PDO::PARAM_STR);
 		return $query->execute();
 		$query->close();
   	}

@@ -22,7 +22,7 @@ foreach ($datos as $key => $value) {
 	$datosTabla = $datosTabla . '<tr>
                 <td class="text-center"></td>
                 <td>'.$value['nombre']. '</td>
-                <td>'.$value['periodo_vigencia'].'</td>
+                <td>'.$value['periodo_vigencia']. ' - ' .$value['periodo_vigencia_dos']. '</td>
                 <td>'.$obj->nombreCarrera($value['id_especialidad']).'</td>
                 <td class="text-center">
 
